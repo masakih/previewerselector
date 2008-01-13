@@ -1,0 +1,14 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = PSPPreviewerTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            ACTIONS = {openPreferences = id; toggleAPlugin = id; togglePreferencePanel = id; }; 
+            CLASS = PSPreference; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {pluginsView = NSTableView; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}
