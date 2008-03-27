@@ -26,6 +26,8 @@
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F47281760CF48168008E5A5B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = English; path = English.lproj/Makefile; sourceTree = "<group>"; };
+		F4B9F90F0D9BCB0E00535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Japanese; path = Japanese.lproj/Makefile; sourceTree = "<group>"; };
+		F4B9F9110D9BCB2000535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Japanese; path = Japanese.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F4E0B9010CF72883003E4686 /* PSPPreviewerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPPreviewerTableView.h; sourceTree = "<group>"; };
 		F4E0B9020CF72883003E4686 /* PSPPreviewerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPPreviewerTableView.m; sourceTree = "<group>"; };
 		F4E0BA8C0CF73509003E4686 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -211,7 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd English.lproj\nmake";
+			shellScript = "cd English.lproj\nmake\ncd ..\ncd Japanese.lproj\nmake";
 		};
 		F47281680CF47F9C008E5A5B /* InfoPlist.stringsの復旧 */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -225,7 +227,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd English.lproj\nmake restorInfoPlist";
+			shellScript = "cd English.lproj\nmake restorInfoPlist\ncd ..\ncd Japanese.lproj\nmake restorInfoPlist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -247,6 +249,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				089C167EFE841241C02AAC07 /* English */,
+				F4B9F9110D9BCB2000535CDD /* Japanese */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F47281760CF48168008E5A5B /* English */,
+				F4B9F90F0D9BCB0E00535CDD /* Japanese */,
 			);
 			name = Makefile;
 			sourceTree = "<group>";

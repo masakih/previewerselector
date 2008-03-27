@@ -244,7 +244,48 @@
 		</dict>
 	</array>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>F4B9F91A0D9BCFF900535CDD</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>NSBundle.h</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>F4B9F91B0D9BCFF900535CDD</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>NSBundle.h</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>F4B9F91E0D9BCFF900535CDD</string>
+						<key>history</key>
+						<array>
+							<string>F4B9F91C0D9BCFF900535CDD</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {746, 731}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>15 55 746 772 0 0 1280 832 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -257,13 +298,13 @@
 			<array>
 				<string>active-target-popup</string>
 				<string>active-buildstyle-popup</string>
-				<string>action</string>
 				<string>NSToolbarFlexibleSpaceItem</string>
-				<string>buildOrClean</string>
-				<string>build-and-goOrGo</string>
-				<string>com.apple.ide.PBXToolbarStopButton</string>
-				<string>get-info</string>
-				<string>toggle-editor</string>
+				<string>servicesModuleSnapshots</string>
+				<string>NSToolbarSeparatorItem</string>
+				<string>build</string>
+				<string>build-and-go</string>
+				<string>go-debug</string>
+				<string>clean-target</string>
 				<string>NSToolbarFlexibleSpaceItem</string>
 				<string>com.apple.pbx.toolbar.searchfield</string>
 			</array>
@@ -278,8 +319,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -319,6 +358,7 @@
 								<string>08FB77AFFE84173DC02AAC07</string>
 								<string>32C88E010371C26100C91783</string>
 								<string>089C167CFE841241C02AAC07</string>
+								<string>F47281750CF48168008E5A5B</string>
 								<string>089C1671FE841209C02AAC07</string>
 								<string>1058C7AEFEA557BF11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -328,8 +368,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>25</integer>
-									<integer>24</integer>
+									<integer>17</integer>
+									<integer>11</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -397,6 +438,8 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -433,9 +476,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F4F2F7F10D1820AB000B2AE5</string>
+				<string>F4B9F9180D9BCFF900535CDD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F4F2F7F20D1820AB000B2AE5</string>
+				<string>F4B9F9190D9BCFF900535CDD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -552,7 +595,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>219685023.611545</real>
+	<real>228315129.07125399</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -567,7 +610,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>/Volumes/Machintosh HD/Users/masaki/Project/PreviewerSelector/PreviewerSelector.xcodeproj</string>
+		<string>F4B9F8F20D9BC5BE00535CDD</string>
+		<string>F4B9F91A0D9BCFF900535CDD</string>
+		<string>/Volumes/MachintoshHD/Users/masaki/Project/PreviewerSelector/PreviewerSelector.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>37 99 690 733 0 0 1280 832 </string>
@@ -578,6 +623,8 @@
 			<false/>
 			<key>Identifier</key>
 			<string>windowTool.build</string>
+			<key>IsVertical</key>
+			<true/>
 			<key>Layout</key>
 			<array>
 				<dict>
@@ -609,7 +656,7 @@
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 36}, {644, 256}}</string>
+								<string>{{0, 94}, {644, 198}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -646,8 +693,8 @@
 			<true/>
 			<key>TableOfContents</key>
 			<array>
-				<string>1C78EAA5065D492600B07095</string>
-				<string>1C78EAA6065D492600B07095</string>
+				<string>F4B9F8F20D9BC5BE00535CDD</string>
+				<string>F4B9F9150D9BCB3600535CDD</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -655,6 +702,10 @@
 			<string>xcode.toolbar.config.buildV3</string>
 			<key>WindowString</key>
 			<string>222 200 644 609 0 0 1280 832 </string>
+			<key>WindowToolGUID</key>
+			<string>F4B9F8F20D9BC5BE00535CDD</string>
+			<key>WindowToolIsVisible</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

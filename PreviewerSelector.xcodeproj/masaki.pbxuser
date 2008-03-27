@@ -110,8 +110,12 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 219685023;
-			PBXWorkspaceStateSaveDate = 219685023;
+			PBXPerProjectTemplateStateSaveDate = 228313839;
+			PBXWorkspaceStateSaveDate = 228313839;
+		};
+		perUserProjectItems = {
+			F4B9F91C0D9BCFF900535CDD /* PBXTextBookmark */ = F4B9F91C0D9BCFF900535CDD /* PBXTextBookmark */;
+			F4B9F91E0D9BCFF900535CDD /* PBXTextBookmark */ = F4B9F91E0D9BCFF900535CDD /* PBXTextBookmark */;
 		};
 		sourceControlManager = F4F15C450A0CEC2300C7526C /* Source Control */;
 		userBuildSettings = {
@@ -119,6 +123,44 @@
 	};
 	8D5B49AC048680CD000E48DA /* PreviewerSelector */ = {
 		activeExec = 0;
+	};
+	F4B9F91C0D9BCFF900535CDD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F4B9F91D0D9BCFF900535CDD /* NSBundle.h */;
+		rLen = 1;
+		rLoc = 10;
+		rType = 1;
+	};
+	F4B9F91D0D9BCFF900535CDD /* NSBundle.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSBundle.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSBundle.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 55}, {746, 772}}";
+		};
+	};
+	F4B9F91E0D9BCFF900535CDD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F4B9F91F0D9BCFF900535CDD /* NSBundle.h */;
+		name = "NSBundle.h: 73";
+		rLen = 0;
+		rLoc = 2680;
+		rType = 0;
+		vrLen = 2523;
+		vrLoc = 1200;
+	};
+	F4B9F91F0D9BCFF900535CDD /* NSBundle.h */ = {
+		isa = PBXFileReference;
+		name = NSBundle.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSBundle.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1670, 1358}}";
+			sepNavSelRange = "{2680, 0}";
+			sepNavVisRange = "{1200, 2523}";
+		};
 	};
 	F4E0B84A0CF6AB02003E4686 /* CMRThreadView.m */ = {
 		isa = PBXFileReference;
@@ -156,6 +198,14 @@
 			sepNavSelRange = "{514, 0}";
 			sepNavVisRect = "{{0, 0}, {633, 757}}";
 			sepNavWindowFrame = "{{15, -3}, {678, 830}}";
+		};
+	};
+	F4E0BA910CF73521003E4686 /* Japanese */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {699, 700}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 356}";
+			sepNavWindowFrame = "{{15, 55}, {746, 772}}";
 		};
 	};
 	F4F15C450A0CEC2300C7526C /* Source Control */ = {

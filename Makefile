@@ -10,7 +10,7 @@ INFO_PLIST=Info.plist
 
 PACKAGE_NAME=PreviewerSelector
 
-URL_PreviewerSelector = svn+ssh://macminiwireless/usr/local/svnrepos/PreviewerSelector
+URL_PreviewerSelector = svn+ssh://macmini/usr/local/svnrepos/PreviewerSelector
 HEAD = $(URL_PreviewerSelector)/PreviewerSelector
 TAGS_DIR = $(URL_PreviewerSelector)/tags
 
