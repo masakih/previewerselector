@@ -72,23 +72,51 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 #pragma mark-
 @implementation PreviewerSelector
 
-+ (void)initialize
-{
-	static BOOL isFirst = YES;
-	
-	if(isFirst) {
-		isFirst = NO;
-		psSwapMethod();
-		
-		sSharedInstance = [[[self class] alloc] init];
-	}
-}
-
 + (id)sharedInstance
 {
+    @synchronized(self) {
+        if (sSharedInstance == nil) {
+            [[self alloc] init]; // ここでは代入していない
+        }
+    }
+    return sSharedInstance;
+}
+
++ (id)allocWithZone:(NSZone *)zone
+{
+	@synchronized(self) {
+		if (sSharedInstance == nil) {
+			sSharedInstance = [super allocWithZone:zone];
+			return sSharedInstance;  // 最初の割り当てで代入し、返す
+		}
+	}
 	return sSharedInstance;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+	return self;
+}
+
+- (id)retain
+{
+	return self;
+}
+
+- (unsigned)retainCount
+{
+	return UINT_MAX;  // 解放できないオブジェクトであることを示す
+}
+
+- (void)release
+{
+	// 何もしない
+}
+
+- (id)autorelease
+{
+	return self;
+}
 - (id)init
 {
 	if(self = [super init]) {
@@ -429,10 +457,12 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	self = [super init];
 	[self release];
 	
-	[sSharedInstance setPreferences:prefs];
-	[sSharedInstance loadPlugIns];
+	id result = [[self class] sharedInstance];
 	
-	return sSharedInstance;
+	[result setPreferences:prefs];
+	[result loadPlugIns];
+	
+	return result;
 }
 	// Accessor
 - (AppDefaults *)preferences
