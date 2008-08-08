@@ -71,6 +71,60 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 
 #pragma mark-
 @implementation PreviewerSelector
+NSString *resolveAlias(NSString *path)
+{
+	NSString *newPath = nil;
+	
+	FSRef	ref;
+	char *newPathCString;
+	Boolean isDir,  wasAliased;
+	OSStatus err;
+	
+	err = FSPathMakeRef( (UInt8 *)[path fileSystemRepresentation], &ref, NULL );
+	if( err == dirNFErr ) {
+		NSString *lastPath = [path lastPathComponent];
+		NSString *parent = [path stringByDeletingLastPathComponent];
+		NSString *f;
+		
+		if( [@"/" isEqualTo:parent] ) return nil;
+		
+		parent = resolveAlias( parent );
+		if( !parent ) return nil;
+		
+		f = [parent stringByAppendingPathComponent:lastPath];
+		
+		err = FSPathMakeRef( (UInt8 *)[f fileSystemRepresentation], &ref, NULL );
+	}
+	if( err != noErr ) {
+		return nil;
+	}
+	
+	err = FSResolveAliasFile( &ref, TRUE, &isDir, &wasAliased );
+	if( err != noErr ) {
+		return nil;
+	}
+	
+	newPathCString = (char *)malloc( sizeof(unichar) * 1024 );
+	if( !newPathCString ) {
+		return nil;
+	}
+	
+	err = FSRefMakePath( &ref, (UInt8 *)newPathCString, sizeof(unichar) * 1024 );
+	if( err != noErr ) {
+		goto final;
+	}
+	
+	newPath = [NSString stringWithUTF8String:newPathCString];
+	
+final:
+	free( (char *)newPathCString );
+	
+	return newPath;
+}
++ (void)initialize
+{
+	psSwapMethod();
+}
 
 + (id)sharedInstance
 {
@@ -207,7 +261,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	if([[self loadedPlugInsInfo] count] == 0) {
 		[self loadDefaultPreviewer];
 	}
-	
+		
 	enume = [files objectEnumerator];
 	while(file = [enume nextObject]) {
 		NSString *fullpath = [path stringByAppendingPathComponent:file];
@@ -406,7 +460,10 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	
 	if(!path) {
 		NSBundle *mainBundle = [NSBundle mainBundle];
-		NSString *appName = [[mainBundle infoDictionary] objectForKey:@"CFBundleExecutable"];
+		NSString *appName = [mainBundle objectForInfoDictionaryKey:@"CFBundleName"];
+		if(!appName) {
+			appName = [[mainBundle infoDictionary] objectForKey:@"CFBundleExecutable"];
+		}
 		
 		OSErr err;
 		FSRef ref;
@@ -424,9 +481,8 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 		path = [path stringByAppendingPathComponent:appName];
 		path = [path stringByAppendingPathComponent:@"PlugIns"];
 	}
-		
 	
-	return path;
+	return resolveAlias(path);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -454,15 +510,12 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 // Designated Initializer
 - (id)initWithPreferences:(AppDefaults *)prefs
 {
-	self = [super init];
-	[self release];
+	self = [self init];
 	
-	id result = [[self class] sharedInstance];
+	[self setPreferences:prefs];
+	[self loadPlugIns];
 	
-	[result setPreferences:prefs];
-	[result loadPlugIns];
-	
-	return result;
+	return self;
 }
 	// Accessor
 - (AppDefaults *)preferences
