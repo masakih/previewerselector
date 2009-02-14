@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		F4A2FAE50F467CDC00A84E18 /* PSPreviewerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */; };
 		F4E0B9030CF72883003E4686 /* PSPPreviewerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E0B9020CF72883003E4686 /* PSPPreviewerTableView.m */; };
 		F4E0BA900CF7350E003E4686 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4E0BA8F0CF7350E003E4686 /* Localizable.strings */; };
 		F4F160330A0D1D1B00C7526C /* Preference.nib in Resources */ = {isa = PBXBuildFile; fileRef = F4F160320A0D1D1B00C7526C /* Preference.nib */; };
@@ -18,14 +19,16 @@
 
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF630370AF2F00C91783 /* PreviewerSelector_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewerSelector_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* ImagePreviewer.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagePreviewer.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F47281760CF48168008E5A5B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = English; path = English.lproj/Makefile; sourceTree = "<group>"; };
+		F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItem.h; sourceTree = "<group>"; };
+		F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPreviewerItem.m; sourceTree = "<group>"; };
 		F4B9F90F0D9BCB0E00535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Japanese; path = Japanese.lproj/Makefile; sourceTree = "<group>"; };
 		F4B9F9110D9BCB2000535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Japanese; path = Japanese.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F4E0B9010CF72883003E4686 /* PSPPreviewerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPPreviewerTableView.h; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */,
+				F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */,
 				F4F160540A0D200800C7526C /* BSImagePreviewerInterface.h */,
 				F4F160350A0D1ED000C7526C /* PSPreference.h */,
 				F4F160340A0D1ED000C7526C /* PSPreference.m */,
@@ -239,6 +244,7 @@
 				F4F160360A0D1ED000C7526C /* PSPreference.m in Sources */,
 				F4F160450A0D1FC000C7526C /* PreviewerSelector.m in Sources */,
 				F4E0B9030CF72883003E4686 /* PSPPreviewerTableView.m in Sources */,
+				F4A2FAE50F467CDC00A84E18 /* PSPreviewerItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
