@@ -4,7 +4,7 @@
 
 @interface PSPreference : NSWindowController
 {
-	IBOutlet NSTableView *pluginsView;
+	IBOutlet NSTableView *pluginsView;	
 	NSMutableArray *plugInList;
 }
 
