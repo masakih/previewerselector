@@ -49,6 +49,8 @@
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
+				<key>itemsController</key>
+				<string>NSArrayController</string>
 				<key>pluginsView</key>
 				<string>NSTableView</string>
 			</dict>

@@ -54,6 +54,13 @@ static PSPreference *sSharedInstance = nil;
 	[pluginsView setTarget:self];
 	
 	[pluginsView registerForDraggedTypes:[NSArray arrayWithObject:PSPItemPastboardType]];
+	
+	[itemsController addObserver:self forKeyPath:@"selection.tryCheck" options:0 context:NULL];
+	[itemsController addObserver:self forKeyPath:@"selection.displayInMenu" options:0 context:NULL];
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	[[PreviewerSelector sharedInstance] savePlugInsInfo];
 }
 
 - (void)setPlugInList:(id)list

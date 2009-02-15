@@ -91,9 +91,9 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4F160540A0D200800C7526C /* BSImagePreviewerInterface.h */,
 				F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */,
 				F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */,
-				F4F160540A0D200800C7526C /* BSImagePreviewerInterface.h */,
 				F4F160350A0D1ED000C7526C /* PSPreference.h */,
 				F4F160340A0D1ED000C7526C /* PSPreference.m */,
 				F4F160430A0D1FC000C7526C /* PreviewerSelector.h */,

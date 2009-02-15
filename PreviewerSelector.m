@@ -225,14 +225,14 @@ final:
 	}
 	
 	// ???
-	[item addObserver:self
-		   forKeyPath:@"tryCheck"
-			  options:NSKeyValueObservingOptionNew
-			  context:NULL];
-	[item addObserver:self
-		   forKeyPath:@"displayInMenu"
-			  options:NSKeyValueObservingOptionNew
-			  context:NULL];
+//	[item addObserver:self
+//		   forKeyPath:@"tryCheck"
+//			  options:NSKeyValueObservingOptionNew
+//			  context:NULL];
+//	[item addObserver:self
+//		   forKeyPath:@"displayInMenu"
+//			  options:NSKeyValueObservingOptionNew
+//			  context:NULL];
 	
 //	[loadedPlugInsInfo addObject:item];
 }
@@ -296,7 +296,7 @@ final:
 	
 	[self setPreference:itemsData forKey:keyPrefPlugInsInfo2];
 	
-	NSLog(@"Save information.");
+//	NSLog(@"Save information.");
 }
 - (void)restorePlugInsInfo
 {
@@ -439,18 +439,18 @@ final:
 	return resolveAlias(path);
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-					  ofObject:(id)object
-						change:(NSDictionary *)change
-					   context:(void *)context
-{
-	if([keyPath isEqualToString:@"tryCheck"]) {
-		[self savePlugInsInfo];
-	}
-	if([keyPath isEqualToString:@"displayInMenu"]) {
-		[self savePlugInsInfo];
-	}
-}
+//- (void)observeValueForKeyPath:(NSString *)keyPath
+//					  ofObject:(id)object
+//						change:(NSDictionary *)change
+//					   context:(void *)context
+//{
+//	if([keyPath isEqualToString:@"tryCheck"]) {
+//		[self savePlugInsInfo];
+//	}
+//	if([keyPath isEqualToString:@"displayInMenu"]) {
+//		[self savePlugInsInfo];
+//	}
+//}
 
 #pragma mark-
 // Designated Initializer
