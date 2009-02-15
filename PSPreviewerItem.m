@@ -29,7 +29,7 @@ static NSMutableDictionary *previewerInfo = nil;
 				isFirst = NO;
 				
 				previewerInfo = [[NSMutableDictionary alloc] init];
-				NSLog(@"Initialize.");
+//				NSLog(@"Initialize.");
 			}
 		}
 	}
