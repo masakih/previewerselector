@@ -26,6 +26,7 @@
 		8D5B49B6048680CD000E48DA /* ImagePreviewer.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImagePreviewer.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		F45032530F669A9500B0B042 /* PSPreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerInterface.h; sourceTree = "<group>"; };
 		F47281760CF48168008E5A5B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = English; path = English.lproj/Makefile; sourceTree = "<group>"; };
 		F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItem.h; sourceTree = "<group>"; };
 		F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPreviewerItem.m; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F45032530F669A9500B0B042 /* PSPreviewerInterface.h */,
 				F4F160540A0D200800C7526C /* BSImagePreviewerInterface.h */,
 				F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */,
 				F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */,

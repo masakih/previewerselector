@@ -183,6 +183,17 @@ final:
 	return self;
 }
 
+- (void)awakePreviewers
+{
+	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
+	
+	while(item = [itemsEnum nextObject]) {
+		id previewer = [item previewer];
+		if([previewer respondsToSelector:@selector(awakeByPreviewerSelector:)]) {
+			[previewer performSelector:@selector(awakeByPreviewerSelector:) withObject:self];
+		}
+	}
+}
 - (void)registPlugIn:(NSBundle *)pluginBundle name:(NSString *)name path:(NSString *)fullpath
 {
 	Class pluginClass;
@@ -283,6 +294,8 @@ final:
 		
 		[self registPlugIn:pluginBundle name:name path:fullpath];
 	}
+	
+	[self awakePreviewers];
 }
 
 - (NSArray *)loadedPlugInsInfo
@@ -528,3 +541,136 @@ final:
 	[self openPSPreference:sender];
 }
 @end
+
+@implementation PreviewerSelector (PSPreviewerInterface)
+static NSArray *previewerDisplayNames = nil;
+static NSArray *previewerIdentifiers = nil;
+static NSArray *previewers = nil;
+
+- (void)buildArrays
+{
+	NSMutableArray *names = [NSMutableArray array];
+	NSMutableArray *ids = [NSMutableArray array];
+	
+	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
+	
+	while(item = [itemsEnum nextObject]) {
+		id name = [item displayName];
+		[names addObject:name];
+		
+		id identifier = [item identifier];
+		[ids addObject:identifier];
+	}
+	
+	previewerDisplayNames = [NSArray arrayWithArray:names];
+	previewerIdentifiers = [NSArray arrayWithArray:ids];
+}
+- (NSArray *)previewerDisplayNames
+{
+	if(previewerDisplayNames) return previewerDisplayNames;
+	
+	[self buildArrays];
+	
+	return previewerDisplayNames;
+}
+	
+- (NSArray *)previewerIdentifires
+{
+	if(previewerIdentifiers) return previewerIdentifiers;
+	
+	[self buildArrays];
+	
+	return previewerIdentifiers;
+}
+- (BOOL)openURL:(NSURL *)url inPreviewerByName:(NSString *)previewerName
+{
+	BOOL result = NO;
+	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
+	
+	while(item = [itemsEnum nextObject]) {
+		NSString *displayName = [item displayName];
+		
+		if([displayName isEqualToString:previewerName]) {
+			id previewer = [item previewer];
+			if([previewer validateLink:url]) {
+				result =  [previewer showImageWithURL:url];
+			}
+			return result;
+		}
+	}
+	
+	return NO;
+}
+- (BOOL)openURL:(NSURL *)url inPreviewerByIdentifier:(NSString *)target
+{
+	BOOL result = NO;
+	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
+	
+	while(item = [itemsEnum nextObject]) {
+		NSString *identifier = [item identifier];
+		
+		if([identifier isEqualToString:target]) {
+			id previewer = [item previewer];
+			if([previewer validateLink:url]) {
+				result =  [previewer showImageWithURL:url];
+			}
+			return result;
+		}
+	}
+	
+	return NO;
+}
+
+- (NSArray *)previewerItems
+{
+	return [NSArray arrayWithArray:loadedPlugInsInfo];
+}
+
+// for direct controll previewers.
+- (NSArray *)previewers
+{
+	if(previewers) return previewers;
+	
+	NSMutableArray *pvs = [NSMutableArray array];
+	
+	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
+	
+	while(item = [itemsEnum nextObject]) {
+		id pv = [item previewer];
+		[pvs addObject:pv];
+	}
+	
+	previewers = [NSArray arrayWithArray:pvs];
+	
+	return previewers;
+}
+- (id <BSImagePreviewerProtocol>)previewerByName:(NSString *)previewerName
+{
+	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
+	
+	while(item = [itemsEnum nextObject]) {
+		NSString *displayName = [item displayName];
+		
+		if([displayName isEqualToString:previewerName]) {
+			return  [item previewer];
+		}
+	}
+	
+	return nil;
+}
+- (id <BSImagePreviewerProtocol>)previewerByIdentifier:(NSString *)previewerIdentifier
+{
+	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
+	
+	while(item = [itemsEnum nextObject]) {
+		NSString *identifier = [item identifier];
+		
+		if([identifier isEqualToString:previewerIdentifier]) {
+			return  [item previewer];
+		}
+	}
+	
+	return nil;
+}
+@end
+
