@@ -177,6 +177,14 @@
 			F4C981E50F46C583005499D7 = F4C981E50F46C583005499D7 /* PBXTextBookmark */;
 			F4C981EC0F46C583005499D7 = F4C981EC0F46C583005499D7 /* PBXTextBookmark */;
 			F4C982120F46C783005499D7 = F4C982120F46C783005499D7 /* PBXTextBookmark */;
+			F4F4DDF70F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDF70F67D8D500C75461 /* PBXTextBookmark */;
+			F4F4DDF80F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDF80F67D8D500C75461 /* PBXTextBookmark */;
+			F4F4DDF90F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDF90F67D8D500C75461 /* PBXTextBookmark */;
+			F4F4DDFA0F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDFA0F67D8D500C75461 /* PBXTextBookmark */;
+			F4F4DDFB0F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDFB0F67D8D500C75461 /* PBXTextBookmark */;
+			F4F4DDFC0F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDFC0F67D8D500C75461 /* PBXTextBookmark */;
+			F4F4DDFD0F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDFD0F67D8D500C75461 /* PBXTextBookmark */;
+			F4F4DDFE0F67D8D500C75461 /* PBXTextBookmark */ = F4F4DDFE0F67D8D500C75461 /* PBXTextBookmark */;
 		};
 		sourceControlManager = F4F15C450A0CEC2300C7526C /* Source Control */;
 		userBuildSettings = {
@@ -304,9 +312,9 @@
 	};
 	F45032530F669A9500B0B042 /* PSPreviewerInterface.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {869, 574}}";
-			sepNavSelRange = "{973, 0}";
-			sepNavVisRange = "{30, 1156}";
+			sepNavIntBoundsRect = "{{0, 0}, {869, 616}}";
+			sepNavSelRange = "{280, 20}";
+			sepNavVisRange = "{95, 1164}";
 		};
 	};
 	F45032580F669DF200B0B042 /* PBXTextBookmark */ = {
@@ -344,7 +352,7 @@
 		fRef = F4F160440A0D1FC000C7526C /* PreviewerSelector.m */;
 		name = "PreviewerSelector.m: 211";
 		rLen = 0;
-		rLoc = 5274;
+		rLoc = 5307;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 4757;
@@ -510,7 +518,7 @@
 		fRef = F4F160440A0D1FC000C7526C /* PreviewerSelector.m */;
 		name = "PreviewerSelector.m: 222";
 		rLen = 0;
-		rLoc = 5274;
+		rLoc = 5307;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 4403;
@@ -541,7 +549,7 @@
 		fRef = F45032530F669A9500B0B042 /* PSPreviewerInterface.h */;
 		name = "PSPreviewerInterface.h: 22";
 		rLen = 0;
-		rLoc = 462;
+		rLoc = 422;
 		rType = 0;
 		vrLen = 1156;
 		vrLoc = 30;
@@ -562,7 +570,7 @@
 		fRef = F4F160440A0D1FC000C7526C /* PreviewerSelector.m */;
 		name = "PreviewerSelector.m: 222";
 		rLen = 0;
-		rLoc = 5274;
+		rLoc = 5307;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 4400;
@@ -640,7 +648,7 @@
 		fRef = F4F160440A0D1FC000C7526C /* PreviewerSelector.m */;
 		name = "PreviewerSelector.m: 222";
 		rLen = 0;
-		rLoc = 5274;
+		rLoc = 5307;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 4403;
@@ -703,7 +711,7 @@
 		fRef = F45032530F669A9500B0B042 /* PSPreviewerInterface.h */;
 		name = "PSPreviewerInterface.h: 33";
 		rLen = 0;
-		rLoc = 973;
+		rLoc = 933;
 		rType = 0;
 		vrLen = 1156;
 		vrLoc = 30;
@@ -1060,18 +1068,18 @@
 	};
 	F4F160430A0D1FC000C7526C /* PreviewerSelector.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {408, 700}}";
-			sepNavSelRange = "{437, 14}";
-			sepNavVisRange = "{305, 313}";
+			sepNavIntBoundsRect = "{{0, 0}, {869, 630}}";
+			sepNavSelRange = "{503, 0}";
+			sepNavVisRange = "{141, 877}";
 			sepNavVisRect = "{{0, 0}, {764, 759}}";
 			sepNavWindowFrame = "{{15, -5}, {809, 832}}";
 		};
 	};
 	F4F160440A0D1FC000C7526C /* PreviewerSelector.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {869, 9626}}";
-			sepNavSelRange = "{5274, 0}";
-			sepNavVisRange = "{4403, 1147}";
+			sepNavIntBoundsRect = "{{0, 0}, {869, 9528}}";
+			sepNavSelRange = "{8039, 0}";
+			sepNavVisRange = "{7683, 1121}";
 			sepNavVisRect = "{{0, 534}, {764, 759}}";
 			sepNavWindowFrame = "{{263, 64}, {809, 768}}";
 		};
@@ -1135,5 +1143,85 @@
 		name = BathyScaphe.app;
 		path = /Users/masaki/Applications/BathyScaphe.app;
 		sourceTree = "<absolute>";
+	};
+	F4F4DDF70F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */;
+		name = "PSPreviewerItem.h: 17";
+		rLen = 0;
+		rLoc = 331;
+		rType = 0;
+		vrLen = 810;
+		vrLoc = 25;
+	};
+	F4F4DDF80F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F4F160430A0D1FC000C7526C /* PreviewerSelector.h */;
+		name = "PreviewerSelector.h: 26";
+		rLen = 0;
+		rLoc = 503;
+		rType = 0;
+		vrLen = 877;
+		vrLoc = 141;
+	};
+	F4F4DDF90F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F4F160440A0D1FC000C7526C /* PreviewerSelector.m */;
+		name = "PreviewerSelector.m: 326";
+		rLen = 0;
+		rLoc = 8039;
+		rType = 0;
+		vrLen = 1121;
+		vrLoc = 7683;
+	};
+	F4F4DDFA0F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F45032530F669A9500B0B042 /* PSPreviewerInterface.h */;
+		name = "PSPreviewerInterface.h: 33";
+		rLen = 0;
+		rLoc = 939;
+		rType = 0;
+		vrLen = 1156;
+		vrLoc = 52;
+	};
+	F4F4DDFB0F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F45032530F669A9500B0B042 /* PSPreviewerInterface.h */;
+		name = "PSPreviewerInterface.h: 35";
+		rLen = 0;
+		rLoc = 983;
+		rType = 0;
+		vrLen = 1156;
+		vrLoc = 52;
+	};
+	F4F4DDFC0F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F4F160430A0D1FC000C7526C /* PreviewerSelector.h */;
+		name = "PreviewerSelector.h: 26";
+		rLen = 0;
+		rLoc = 503;
+		rType = 0;
+		vrLen = 877;
+		vrLoc = 141;
+	};
+	F4F4DDFD0F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F4F160440A0D1FC000C7526C /* PreviewerSelector.m */;
+		name = "PreviewerSelector.m: 326";
+		rLen = 0;
+		rLoc = 8039;
+		rType = 0;
+		vrLen = 1121;
+		vrLoc = 7683;
+	};
+	F4F4DDFE0F67D8D500C75461 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F45032530F669A9500B0B042 /* PSPreviewerInterface.h */;
+		name = "PSPreviewerInterface.h: 15";
+		rLen = 20;
+		rLoc = 280;
+		rType = 0;
+		vrLen = 1164;
+		vrLoc = 95;
 	};
 }
