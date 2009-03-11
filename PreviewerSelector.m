@@ -12,6 +12,7 @@
 
 #import "PSPreviewerItem.h"
 
+#import "PSPreviewerInterface.h"
 
 #pragma mark## Static Variable ##
 static IMP orignalIMP;
@@ -472,7 +473,7 @@ final:
 	self = [self init];
 	
 	[self setPreferences:prefs];
-	[self loadPlugIns];
+//	[self loadPlugIns];
 	
 	return self;
 }
@@ -540,6 +541,9 @@ final:
 {
 	[self openPSPreference:sender];
 }
+@end
+
+@interface PreviewerSelector (PSPreviewerInterface) <PSPreviewerInterface>
 @end
 
 @implementation PreviewerSelector (PSPreviewerInterface)
@@ -674,3 +678,9 @@ static NSArray *previewers = nil;
 }
 @end
 
+@implementation NSObject (PSPreviewerInterface)
++ (id <PSPreviewerInterface>)PSPreviewerSelector
+{
+	return [PreviewerSelector sharedInstance];
+}
+@end
