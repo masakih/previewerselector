@@ -10,10 +10,9 @@
 #import "BSImagePreviewerInterface.h"
 
 @class PSPreviewerItem;
+@class PreviewerSelector;
 
-@interface PreviewerSelector (PSPreviewerInterface)
-
-+ (PreviewerSelector *)sharedInstance;
+@protocol PSPreviewerInterface
 
 - (NSArray *)previewerDisplayNames;
 - (NSArray *)previewerIdentifires;
@@ -34,7 +33,11 @@
 
 
 @interface NSObject (PSPreviewerInterface)
++ (id <PSPreviewerInterface>)PSPreviewerSelector;
+@end
+
+@interface NSObject (PreviewerOptionalMethod)
 // this method called, if previewer load by PreviewerSelector.
 // all property is ready.
-- (void)awakeByPreviewerSelector:(PreviewerSelector *)previewerSelector;
+- (void)awakeByPreviewerSelector:(id <PSPreviewerInterface>)previewerSelector;
 @end

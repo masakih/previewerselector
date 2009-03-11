@@ -327,7 +327,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
+									<integer>4</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -384,7 +384,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F45032A70F66AB5A00B0B042</string>
+										<string>F45032C60F66B24F00B0B042</string>
 										<key>history</key>
 										<array>
 											<string>F4A2FAEA0F4681A600A84E18</string>
@@ -404,14 +404,21 @@
 											<string>F432B5CE0F48615D00E28D22</string>
 											<string>F45032580F669DF200B0B042</string>
 											<string>F45032850F66A6E600B0B042</string>
-											<string>F45032860F66A6E600B0B042</string>
 											<string>F45032870F66A6E600B0B042</string>
-											<string>F450329A0F66AB5A00B0B042</string>
 											<string>F450329B0F66AB5A00B0B042</string>
 											<string>F450329C0F66AB5A00B0B042</string>
-											<string>F450329D0F66AB5A00B0B042</string>
 											<string>F450329E0F66AB5A00B0B042</string>
-											<string>F450329F0F66AB5A00B0B042</string>
+											<string>F45032AC0F66B24F00B0B042</string>
+											<string>F45032AE0F66B24F00B0B042</string>
+											<string>F45032B00F66B24F00B0B042</string>
+											<string>F45032B20F66B24F00B0B042</string>
+											<string>F45032B30F66B24F00B0B042</string>
+											<string>F45032B40F66B24F00B0B042</string>
+											<string>F45032B50F66B24F00B0B042</string>
+										</array>
+										<key>nextStack</key>
+										<array>
+											<string>F45032C50F66B24F00B0B042</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -433,13 +440,23 @@
 											<string>F432B5B80F4854EC00E28D22</string>
 											<string>F450328A0F66A6E600B0B042</string>
 											<string>F450328B0F66A6E600B0B042</string>
-											<string>F45032A00F66AB5A00B0B042</string>
 											<string>F45032A10F66AB5A00B0B042</string>
 											<string>F45032A20F66AB5A00B0B042</string>
 											<string>F45032A30F66AB5A00B0B042</string>
 											<string>F45032A40F66AB5A00B0B042</string>
 											<string>F45032A50F66AB5A00B0B042</string>
 											<string>F45032A60F66AB5A00B0B042</string>
+											<string>F45032B60F66B24F00B0B042</string>
+											<string>F45032B70F66B24F00B0B042</string>
+											<string>F45032B80F66B24F00B0B042</string>
+											<string>F45032BA0F66B24F00B0B042</string>
+											<string>F45032BC0F66B24F00B0B042</string>
+											<string>F45032BE0F66B24F00B0B042</string>
+											<string>F45032C00F66B24F00B0B042</string>
+											<string>F45032C10F66B24F00B0B042</string>
+											<string>F45032C20F66B24F00B0B042</string>
+											<string>F45032C30F66B24F00B0B042</string>
+											<string>F45032C40F66B24F00B0B042</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -616,7 +633,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>258386778.655332</real>
+	<real>258388559.852999</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -631,11 +648,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F45032690F669F7300B0B042</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C0AD2AF069F1E9B00FABCE6</string>
-		<string>/Volumes/MachintoshHD/Users/masaki/Project/PreviewerSelector/PreviewerSelector.xcodeproj</string>
 		<string>F4C6F3920F47034D0078E711</string>
+		<string>F45032690F669F7300B0B042</string>
+		<string>1C0AD2AF069F1E9B00FABCE6</string>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>/Volumes/MachintoshHD/Users/masaki/Project/PreviewerSelector/PreviewerSelector.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>37 107 1126 725 0 0 1280 832 </string>
@@ -1155,7 +1172,7 @@
 			<key>WindowToolGUID</key>
 			<string>F4C6F3920F47034D0078E711</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1466,7 +1483,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2AF069F1E9B00FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
