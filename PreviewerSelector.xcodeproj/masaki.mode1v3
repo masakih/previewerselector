@@ -383,7 +383,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F4F4DDFE0F67D8D500C75461</string>
+										<string>F4F4DE090F67DA1C00C75461</string>
 										<key>history</key>
 										<array>
 											<string>F4A2FAEA0F4681A600A84E18</string>
@@ -616,7 +616,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>258463957.373173</real>
+	<real>258464284.382907</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -631,10 +631,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>F4C6F3920F47034D0078E711</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F4F4DDE80F67D5AD00C75461</string>
 		<string>/Volumes/MachintoshHD/Users/masaki/Project/PreviewerSelector/PreviewerSelector.xcodeproj</string>
-		<string>F4C6F3920F47034D0078E711</string>
 	</array>
 	<key>WindowString</key>
 	<string>37 107 1126 725 0 0 1280 832 </string>
@@ -1154,7 +1154,7 @@
 			<key>WindowToolGUID</key>
 			<string>F4C6F3920F47034D0078E711</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

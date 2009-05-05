@@ -566,8 +566,8 @@ static NSArray *previewers = nil;
 		[ids addObject:identifier];
 	}
 	
-	previewerDisplayNames = [NSArray arrayWithArray:names];
-	previewerIdentifiers = [NSArray arrayWithArray:ids];
+	previewerDisplayNames = [[NSArray arrayWithArray:names] retain];
+	previewerIdentifiers = [[NSArray arrayWithArray:ids] retain];
 }
 - (NSArray *)previewerDisplayNames
 {
