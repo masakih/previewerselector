@@ -24,23 +24,47 @@ NSMenuItem *psCommandItemWithLink(id self, SEL _cmd, id link, Class class, NSStr
 	NSMenuItem *res;
 	
 	if(class_ == class) {
-	   res = [obj previewMenuItemForLink:link];
-	   [res setTitle:title];
+		res = [obj previewMenuItemForLink:link];
+		[res setTitle:title];
 	} else {
 		res = orignalIMP(self, _cmd, link, class, title);
 	}
 	
 	return res;
 }
+
+@implementation PreviewerSelector(MethodExchange)
+- (NSMenuItem *)replacementCommandItemWithLink:(id)link command:(Class)class title:(NSString *)title
+{
+	id obj = [PreviewerSelector sharedInstance];
+	Class class_ = NSClassFromString(@"SGPreviewLinkCommand");
+	NSMenuItem *res;
+		
+	if(class_ == class) {
+		res = [obj previewMenuItemForLink:link];
+		[res setTitle:title];
+	} else {
+		res = orignalIMP(self, _cmd, link, class, title);
+	}
+	
+	return res;
+}
+@end
 static void psSwapMethod()
 {
-	Class target = NSClassFromString(@"CMRThreadView");
-    Method method;
+//	Class target = NSClassFromString(@"CMRThreadView");
+	Class target = NSClassFromString(@"SGHTMLView");
+	Method method;
 	
     method = class_getInstanceMethod(target, @selector(commandItemWithLink:command:title:));
+	orignalIMP = class_getMethodImplementation(target, @selector(commandItemWithLink:command:title:));
 	if(method) {
-		orignalIMP = method->method_imp;
-		method->method_imp = (IMP)psCommandItemWithLink;
+//		orignalIMP = method->method_imp;
+//		method->method_imp = (IMP)psCommandItemWithLink;
+		
+		Method newMethod = class_getInstanceMethod([PreviewerSelector class], @selector(replacementCommandItemWithLink:command:title:));
+		
+		method_exchangeImplementations(method, newMethod);
 	}
 }
 
@@ -71,6 +95,8 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 
 @interface PreviewerSelector(PSPrivate)
 - (void)loadPlugIns;
+- (BOOL)openURL:(NSURL *)url withPreviewer:(id)previewer;
+- (BOOL)openURLs:(NSArray *)url withPreviewer:(id)previewer;
 @end
 
 #pragma mark-
@@ -161,7 +187,7 @@ final:
 	return self;
 }
 
-- (unsigned)retainCount
+- (NSUInteger)retainCount
 {
 	return UINT_MAX;  // 解放できないオブジェクトであることを示す
 }
@@ -206,7 +232,8 @@ final:
 	[pluginBundle load];
 	pluginClass = [pluginBundle principalClass];
 	if(!pluginClass) return;
-	if(![pluginClass conformsToProtocol:@protocol(BSImagePreviewerProtocol)]) return;
+	if(![pluginClass conformsToProtocol:@protocol(BSImagePreviewerProtocol)]
+	   && ![pluginClass conformsToProtocol:@protocol(BSLinkPreviewing)]) return;
 	plugin = [[[pluginClass alloc] initWithPreferences:[self preferences]] autorelease];
 	if(!plugin) return;
 	
@@ -400,7 +427,7 @@ final:
 	id obj = [[rep objectForKey:keyPlugInObject] previewer];
 	id url = [rep objectForKey:keyActionLink];
 	
-	[obj showImageWithURL:url];
+	[self openURL:url withPreviewer:obj];
 }
 - (void)openPSPreference:(id)sender
 {
@@ -503,15 +530,21 @@ final:
 		id previewer = [item previewer];
 		if(![item isTryCheck]) continue;
 		if([previewer validateLink:imageURL]) {
-			result =  [previewer showImageWithURL:imageURL];
+			result =  [self openURL:imageURL withPreviewer:previewer];
 		}
 		if(result) return YES;
 	}
 	
 	return NO;
 }
+- (BOOL)previewLink:(NSURL *)url
+{
+	return [self showImageWithURL:url];
+}
 - (BOOL)validateLink:(NSURL *)anURL
 {
+	if([[anURL scheme] isEqualToString:@"cmonar"]) return NO;
+	
 	return YES;
 }
 
@@ -521,20 +554,21 @@ final:
 	[pref setPlugInList:[self loadedPlugInsInfo]];
 	[pref togglePreferencePanel:self];
 }
-
+- (BOOL)previewLinks:(NSArray *)urls
+{
+	return [self showImagesWithURLs:urls];
+}
 - (BOOL)showImagesWithURLs:(NSArray *)urls
 {
 	BOOL result = NO;
 	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
 	
 	while(item = [itemsEnum nextObject]) {
-		if([item respondsToSelector:_cmd]) {
-			result = [item showImagesWithURLs:urls];
-		}
+		result = [self openURLs:urls withPreviewer:[item previewer]];
 		if(result) return YES;
 	}
 	
-	return YES;
+	return NO;
 }
 
 - (IBAction)showPreviewerPreferences:(id)sender
@@ -586,6 +620,25 @@ static NSArray *previewers = nil;
 	
 	return previewerIdentifiers;
 }
+- (BOOL)openURL:(NSURL *)url withPreviewer:(id)previewer
+{
+	if([previewer conformsToProtocol:@protocol(BSLinkPreviewing)]) {
+		return [previewer previewLink:url];
+	}
+	
+	return [previewer showImageWithURL:url];
+}
+- (BOOL)openURLs:(NSArray *)url withPreviewer:(id)previewer
+{
+	if([previewer respondsToSelector:@selector(previewLinks:)]) {
+		return [previewer previewLinks:url];
+	}
+	if([previewer respondsToSelector:@selector(showImagesWithURLs:)]) {
+		return [previewer showImagesWithURLs:url];
+	}
+	return NO;
+}
+
 - (BOOL)openURL:(NSURL *)url inPreviewerByName:(NSString *)previewerName
 {
 	BOOL result = NO;
@@ -597,7 +650,7 @@ static NSArray *previewers = nil;
 		if([displayName isEqualToString:previewerName]) {
 			id previewer = [item previewer];
 			if([previewer validateLink:url]) {
-				result =  [previewer showImageWithURL:url];
+				result =  [self openURL:url withPreviewer:previewer];;
 			}
 			return result;
 		}
@@ -616,7 +669,7 @@ static NSArray *previewers = nil;
 		if([identifier isEqualToString:target]) {
 			id previewer = [item previewer];
 			if([previewer validateLink:url]) {
-				result =  [previewer showImageWithURL:url];
+				result =  [self openURL:url withPreviewer:previewer];;
 			}
 			return result;
 		}

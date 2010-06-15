@@ -110,7 +110,7 @@ enum _PreferenceMenuTags {
 	kOpenPreviewer = 10000,
 	kOpenPreferences = 10001,
 };
-- (BOOL)validateMenuItem:(id <NSMenuItem>)menuItem
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
 	int selectedRow = [pluginsView selectedRow];
 	if(selectedRow == -1) return NO;

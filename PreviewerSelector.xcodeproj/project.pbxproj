@@ -32,6 +32,7 @@
 		F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPreviewerItem.m; sourceTree = "<group>"; };
 		F4B9F90F0D9BCB0E00535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Japanese; path = Japanese.lproj/Makefile; sourceTree = "<group>"; };
 		F4B9F9110D9BCB2000535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Japanese; path = Japanese.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F4D254E711C7968100232358 /* BSPreviewPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPreviewPluginInterface.h; sourceTree = "<group>"; };
 		F4E0B9010CF72883003E4686 /* PSPPreviewerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPPreviewerTableView.h; sourceTree = "<group>"; };
 		F4E0B9020CF72883003E4686 /* PSPPreviewerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPPreviewerTableView.m; sourceTree = "<group>"; };
 		F4E0BA8C0CF73509003E4686 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 			children = (
 				F45032530F669A9500B0B042 /* PSPreviewerInterface.h */,
 				F4F160540A0D200800C7526C /* BSImagePreviewerInterface.h */,
+				F4D254E711C7968100232358 /* BSPreviewPluginInterface.h */,
 				F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */,
 				F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */,
 				F4F160350A0D1ED000C7526C /* PSPreference.h */,
@@ -306,10 +308,8 @@
 		1DEB913C08733D840010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -329,7 +329,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
@@ -339,7 +339,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
 		};

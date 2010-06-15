@@ -9,8 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 #import "BSImagePreviewerInterface.h"
+#import "BSPreviewPluginInterface.h"
 
-@interface PreviewerSelector : NSObject <BSImagePreviewerProtocol>
+@interface PreviewerSelector : NSObject <BSImagePreviewerProtocol, BSLinkPreviewing>
 {
 	AppDefaults *preferences;
 	
