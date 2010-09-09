@@ -358,8 +358,6 @@ final:
 	while(item = [itemsEnum nextObject]) {
 		[itemsDict setObject:item forKey:[item identifier]];
 	}
-	
-	[self loadPlugIns];
 }
 
 - (NSMenuItem *)preferenceMenuItem
@@ -500,7 +498,7 @@ final:
 	self = [self init];
 	
 	[self setPreferences:prefs];
-//	[self loadPlugIns];
+	[self loadPlugIns];
 	
 	return self;
 }
