@@ -156,25 +156,17 @@ final:
 	psSwapMethod();
 }
 
-+ (id)sharedInstance
++ (PreviewerSelector *)sharedInstance
 {
-    @synchronized(self) {
-        if (sSharedInstance == nil) {
-            [[self alloc] init]; // ここでは代入していない
-        }
-    }
-    return sSharedInstance;
+	if (sSharedInstance == nil) {
+		sSharedInstance = [[super allocWithZone:NULL] init];
+	}
+	return sSharedInstance;
 }
 
 + (id)allocWithZone:(NSZone *)zone
 {
-	@synchronized(self) {
-		if (sSharedInstance == nil) {
-			sSharedInstance = [super allocWithZone:zone];
-			return sSharedInstance;  // 最初の割り当てで代入し、返す
-		}
-	}
-	return sSharedInstance;
+	return [[self sharedInstance] retain];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -189,12 +181,12 @@ final:
 
 - (NSUInteger)retainCount
 {
-	return UINT_MAX;  // 解放できないオブジェクトであることを示す
+	return NSUIntegerMax;  //denotes an object that cannot be released
 }
 
 - (void)release
 {
-	// 何もしない
+	//do nothing
 }
 
 - (id)autorelease
@@ -429,7 +421,7 @@ final:
 }
 - (void)openPSPreference:(id)sender
 {
-	PSPreference *pref = [PSPreference sharedInstance];
+	PSPreference *pref = [PSPreference sharedPreference];
 	[pref setPlugInList:[self loadedPlugInsInfo]];
 	[pref showWindow:self];
 }
@@ -548,7 +540,7 @@ final:
 
 - (IBAction) togglePreviewPanel : (id) sender
 {
-	PSPreference *pref = [PSPreference sharedInstance];
+	PSPreference *pref = [PSPreference sharedPreference];
 	[pref setPlugInList:[self loadedPlugInsInfo]];
 	[pref togglePreferencePanel:self];
 }

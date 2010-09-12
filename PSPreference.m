@@ -15,36 +15,42 @@ static NSString *const PSPRowIndexType = @"PSPRowIndexType";
 
 static PSPreference *sSharedInstance = nil;
 
-+ (id)sharedInstance
++ (PSPreference*)sharedPreference
 {
-	if(!sSharedInstance) {
-		sSharedInstance = [[self alloc] privateInit];
+	if (sSharedInstance == nil) {
+		sSharedInstance = [[super allocWithZone:NULL] initWithWindowNibName:@"Preference"];
 	}
-	
 	return sSharedInstance;
 }
 
-- (id)privateInit
++ (id)allocWithZone:(NSZone *)zone
 {
-	self = [super initWithWindowNibName:@"Preference"];
-	if(self) {
-		//
-	}
-	
+	return [[self sharedPreference] retain];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
 	return self;
 }
-- (id)init
+
+- (id)retain
 {
-	self = [super init];
-	[self release];
-	
-	return [[self class] sharedInstance];
+	return self;
 }
-- (void)dealloc
+
+- (NSUInteger)retainCount
 {
-	[plugInList release];
-	
-	[super dealloc];
+	return NSUIntegerMax;  //denotes an object that cannot be released
+}
+
+- (void)release
+{
+	//do nothing
+}
+
+- (id)autorelease
+{
+	return self;
 }
 - (void)awakeFromNib
 {

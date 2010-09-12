@@ -10,7 +10,7 @@
 	NSMutableArray *plugInList;
 }
 
-+ (id)sharedInstance;
++ (id)sharedPreference;
 - (void)setPlugInList:(id)list;
 
 - (IBAction)togglePreferencePanel: (id) sender;
