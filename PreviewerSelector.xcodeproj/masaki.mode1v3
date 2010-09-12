@@ -360,7 +360,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
+									<integer>5</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -405,7 +405,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>NSKeyedArchiver.h</string>
+								<string>PSPreviewerItem.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -413,14 +413,13 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>NSKeyedArchiver.h</string>
+										<string>PSPreviewerItem.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F458F2C9123C617900A546E4</string>
+										<string>F458F36F123C8CB800A546E4</string>
 										<key>history</key>
 										<array>
-											<string>F4C981E00F46C583005499D7</string>
 											<string>F4C6F3B00F470B4F0078E711</string>
 											<string>F450329E0F66AB5A00B0B042</string>
 											<string>F4D2550111C79FF800232358</string>
@@ -432,18 +431,20 @@
 											<string>F46DB903121C1E8F006F8C6D</string>
 											<string>F46DB90A121D6294006F8C6D</string>
 											<string>F46DB90C121D6294006F8C6D</string>
-											<string>F46DB90D121D6294006F8C6D</string>
-											<string>F468C2A6121D7D08009EFA3E</string>
 											<string>F423361A12334362005BA1B8</string>
-											<string>F423362812334BB7005BA1B8</string>
-											<string>F423362912334BB7005BA1B8</string>
 											<string>F49061F5123A7C0800458627</string>
 											<string>F49061F6123A7C0800458627</string>
 											<string>F4906224123A7E4D00458627</string>
-											<string>F4906225123A7E4D00458627</string>
-											<string>F4906226123A7E4D00458627</string>
-											<string>F458F2A9123C5B9800A546E4</string>
-											<string>F458F2AA123C5B9800A546E4</string>
+											<string>F458F2D3123C84F400A546E4</string>
+											<string>F458F2D5123C84F400A546E4</string>
+											<string>F458F2D6123C84F400A546E4</string>
+											<string>F458F2D7123C84F400A546E4</string>
+											<string>F458F2D8123C84F400A546E4</string>
+											<string>F458F324123C884800A546E4</string>
+											<string>F458F36A123C8CB800A546E4</string>
+											<string>F458F36C123C8CB800A546E4</string>
+											<string>F458F36D123C8CB800A546E4</string>
+											<string>F458F36E123C8CB800A546E4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -622,7 +623,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>305947001.78109002</real>
+	<real>305958072.30567902</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -637,16 +638,16 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F458F2CA123C617900A546E4</string>
+		<string>F4C6F3920F47034D0078E711</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2AF069F1E9B00FABCE6</string>
 		<string>F458F291123C58A600A546E4</string>
 		<string>F458F292123C58A600A546E4</string>
-		<string>F4F4DDE80F67D5AD00C75461</string>
-		<string>/Users/masaki/Projects/PreviewerSelector/PreviewerSelector.xcodeproj</string>
-		<string>F458F2A4123C5B5E00A546E4</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>F4F4DDE80F67D5AD00C75461</string>
+		<string>F458F2A4123C5B5E00A546E4</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/masaki/Projects/PreviewerSelector/PreviewerSelector.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>192 145 1126 725 0 0 1440 878 </string>
@@ -670,7 +671,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>PreviewerSelector.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -687,6 +688,8 @@
 							<string>271pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -861,7 +864,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1151,7 +1154,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F4C6F3920F47034D0078E711</string>
-				<string>F49061ED12390A1D00458627</string>
+				<string>F458F2CE123C82B100A546E4</string>
 				<string>1C78EAB2065D492600B07095</string>
 				<string>1CD052920623707200166675</string>
 			</array>

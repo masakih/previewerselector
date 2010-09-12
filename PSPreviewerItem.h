@@ -22,20 +22,12 @@
 
 - (id)initWithIdentifier:(NSString *)identifier;
 
-- (NSString *)identifier;
-
-- (id)previewer;
-- (void)setPreviewer:(id)previewer;
-- (NSString *)displayName;
-- (void)setDisplayName:(NSString *)displayName;
-- (NSString *)path;
-- (void)setPath:(NSString *)path;
-- (NSString *)version;
-- (void)setVersion:(NSString *)version;
-- (BOOL)isTryCheck;
-- (void)setTryCheck:(BOOL)flag;
-- (BOOL)isDisplayInMenu;
-- (void)setDisplayInMenu:(BOOL)flag;
-
+@property (nonatomic, copy, readonly) NSString *identifier;
+@property (nonatomic, retain) id previewer;
+@property (nonatomic, copy) NSString *displayName;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) NSString *version;
+@property (getter=isTryCheck) BOOL tryCheck;
+@property (getter=isDisplayInMenu) BOOL displayInMenu;
 
 @end

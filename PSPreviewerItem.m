@@ -20,6 +20,11 @@ static NSMutableDictionary *previewerInfo = nil;
 
 @implementation PSPreviewerItem
 
+@synthesize identifier;
+@synthesize previewer;
+@synthesize displayName, path, version;
+@synthesize tryCheck, displayInMenu;
+
 + (void)initialize
 {
 	static BOOL isFirst = YES;
@@ -44,15 +49,18 @@ static NSMutableDictionary *previewerInfo = nil;
 	return self;
 }
 
-- (NSString *)identifier
+- (void)dealloc
 {
-	return identifier;
+	self.previewer = nil;
+	self.displayName = nil;
+	self.path = nil;
+	self.version = nil;
+	
+	[identifier release];
+	
+	[super dealloc];
 }
 
-- (id)previewer
-{
-	return previewer;
-}
 - (void)setPreviewer:(id)newPreviewer
 {
 	if(previewer == newPreviewer) return;
@@ -61,55 +69,6 @@ static NSMutableDictionary *previewerInfo = nil;
 	previewer = [newPreviewer retain];
 	
 	[previewerInfo setObject:previewer forKey:identifier];
-}
-- (NSString *)displayName
-{
-	return displayName;
-}
-- (void)setDisplayName:(NSString *)newDisplayName
-{
-	if(displayName == newDisplayName) return;
-	
-	[displayName autorelease];
-	displayName = [newDisplayName copy];
-}
-- (NSString *)path
-{
-	return path;
-}
-- (void)setPath:(NSString *)newPath
-{
-	if(path == newPath) return;
-	
-	[path autorelease];
-	path = [newPath copy];
-}
-- (NSString *)version
-{
-	return version;
-}
-- (void)setVersion:(NSString *)newVersion
-{
-	if(version == newVersion) return;
-	
-	[version autorelease];
-	version = [newVersion copy];
-}
-- (BOOL)isTryCheck
-{
-	return tryCheck;
-}
-- (void)setTryCheck:(BOOL)flag
-{
-	tryCheck = flag;
-}
-- (BOOL)isDisplayInMenu
-{
-	return displayInMenu;
-}
-- (void)setDisplayInMenu:(BOOL)flag
-{
-	displayInMenu = flag;
 }
 
 - (id)copyWithZone:(NSZone *)zone
