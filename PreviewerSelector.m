@@ -204,9 +204,7 @@ final:
 
 - (void)awakePreviewers
 {
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
-	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		id previewer = [item previewer];
 		if([previewer respondsToSelector:@selector(awakeByPreviewerSelector:)]) {
 			[previewer performSelector:@selector(awakeByPreviewerSelector:) withObject:self];
@@ -273,10 +271,8 @@ final:
 	id pluginDirPath = [b builtInPlugInsPath];
 	NSFileManager *dfm = [NSFileManager defaultManager];
 	NSArray *files = [dfm directoryContentsAtPath:pluginDirPath];
-	id enume, file;
 	
-	enume = [files objectEnumerator];
-	while(file = [enume nextObject]) {
+	for(NSString *file in files) {
 		NSString *fullpath = [pluginDirPath stringByAppendingPathComponent:file];
 		NSString *name = [file stringByDeletingPathExtension];
 		NSBundle *pluginBundle;
@@ -295,14 +291,12 @@ final:
 	NSString *path = [self plugInsDirectory];
 	NSFileManager *dfm = [NSFileManager defaultManager];
 	NSArray *files = [dfm directoryContentsAtPath:path];
-	id enume, file;
 	
 //	if([[self loadedPlugInsInfo] count] == 0) {
 		[self loadDefaultPreviewer];
 //	}
 		
-	enume = [files objectEnumerator];
-	while(file = [enume nextObject]) {
+	for(NSString *file in files) {
 		NSString *fullpath = [path stringByAppendingPathComponent:file];
 		NSString *name = [file stringByDeletingPathExtension];
 		NSBundle *pluginBundle;
@@ -346,8 +340,7 @@ final:
 	
 	[itemsDict autorelease];
 	itemsDict = [[NSMutableDictionary alloc] init];
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		[itemsDict setObject:item forKey:[item identifier]];
 	}
 }
@@ -372,11 +365,8 @@ final:
 	
 	id submenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
 	[res setSubmenu:submenu];
-		
-	id plugIns = [[self loadedPlugInsInfo] objectEnumerator];
-	id item;
 	
-	while(item = [plugIns nextObject]) {
+	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
 		id name;
 		id menuItem;
 		
@@ -514,9 +504,8 @@ final:
 - (BOOL)showImageWithURL:(NSURL *)imageURL
 {
 	BOOL result = NO;
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
 	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		id previewer = [item previewer];
 		if(![item isTryCheck]) continue;
 		if([previewer validateLink:imageURL]) {
@@ -551,9 +540,8 @@ final:
 - (BOOL)showImagesWithURLs:(NSArray *)urls
 {
 	BOOL result = NO;
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
 	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		result = [self openURLs:urls withPreviewer:[item previewer]];
 		if(result) return YES;
 	}
@@ -579,10 +567,8 @@ static NSArray *previewers = nil;
 {
 	NSMutableArray *names = [NSMutableArray array];
 	NSMutableArray *ids = [NSMutableArray array];
-	
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
-	
-	while(item = [itemsEnum nextObject]) {
+		
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		id name = [item displayName];
 		[names addObject:name];
 		
@@ -632,9 +618,8 @@ static NSArray *previewers = nil;
 - (BOOL)openURL:(NSURL *)url inPreviewerByName:(NSString *)previewerName
 {
 	BOOL result = NO;
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
 	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		NSString *displayName = [item displayName];
 		
 		if([displayName isEqualToString:previewerName]) {
@@ -651,9 +636,8 @@ static NSArray *previewers = nil;
 - (BOOL)openURL:(NSURL *)url inPreviewerByIdentifier:(NSString *)target
 {
 	BOOL result = NO;
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
 	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		NSString *identifier = [item identifier];
 		
 		if([identifier isEqualToString:target]) {
@@ -680,9 +664,7 @@ static NSArray *previewers = nil;
 	
 	NSMutableArray *pvs = [NSMutableArray array];
 	
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
-	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		id pv = [item previewer];
 		[pvs addObject:pv];
 	}
@@ -693,9 +675,7 @@ static NSArray *previewers = nil;
 }
 - (id <BSImagePreviewerProtocol>)previewerByName:(NSString *)previewerName
 {
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
-	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		NSString *displayName = [item displayName];
 		
 		if([displayName isEqualToString:previewerName]) {
@@ -707,9 +687,7 @@ static NSArray *previewers = nil;
 }
 - (id <BSImagePreviewerProtocol>)previewerByIdentifier:(NSString *)previewerIdentifier
 {
-	id item, itemsEnum = [loadedPlugInsInfo objectEnumerator];
-	
-	while(item = [itemsEnum nextObject]) {
+	for(PSPreviewerItem *item in loadedPlugInsInfo) {
 		NSString *identifier = [item identifier];
 		
 		if([identifier isEqualToString:previewerIdentifier]) {
