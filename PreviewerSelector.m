@@ -11,27 +11,10 @@
 #import <objc/objc-class.h>
 
 #import "PSPreviewerItem.h"
-
-#import "PSPreviewerInterface.h"
+#import "PSPreviewerItems.h"
 
 #pragma mark## Static Variable ##
 static IMP orignalIMP;
-
-NSMenuItem *psCommandItemWithLink(id self, SEL _cmd, id link, Class class, NSString *title)
-{
-	id obj = [PreviewerSelector sharedInstance];
-	Class class_ = NSClassFromString(@"SGPreviewLinkCommand");
-	NSMenuItem *res;
-	
-	if(class_ == class) {
-		res = [obj previewMenuItemForLink:link];
-		[res setTitle:title];
-	} else {
-		res = orignalIMP(self, _cmd, link, class, title);
-	}
-	
-	return res;
-}
 
 @implementation PreviewerSelector(MethodExchange)
 - (NSMenuItem *)replacementCommandItemWithLink:(id)link command:(Class)class title:(NSString *)title
@@ -58,12 +41,8 @@ static void psSwapMethod()
 	
     method = class_getInstanceMethod(target, @selector(commandItemWithLink:command:title:));
 	orignalIMP = class_getMethodImplementation(target, @selector(commandItemWithLink:command:title:));
-	if(method) {
-//		orignalIMP = method->method_imp;
-//		method->method_imp = (IMP)psCommandItemWithLink;
-		
+	if(method) {		
 		Method newMethod = class_getInstanceMethod([PreviewerSelector class], @selector(replacementCommandItemWithLink:command:title:));
-		
 		method_exchangeImplementations(method, newMethod);
 	}
 }
@@ -74,27 +53,14 @@ static PreviewerSelector *sSharedInstance;
 
 #pragma mark-
 #pragma mark## NSDictionary Keys ##
-//static NSString *keyPlugInPath = @"PlugInPathKey";
 static NSString *keyPlugInObject = @"PlugInObjectKey";
-//static NSString *keyPlugInName = @"PlugInNameKey";
-//static NSString *keyPlugInDisplayName = @"PlugInDisplayNameKey";
-//static NSString *keyPlugInVersion = @"PlugInVersionKey";
-//static NSString *keyPlugInID = @"PlugInIDKey";
-//static NSString *keyPlugInIsUse = @"PlugInIsUseKey";
-//static NSString *keyPlugInIsDefault = @"PlugInIsDefaultKey";
-
 static NSString *keyActionLink = @"ActionLinkKey";
 
 #define AppIdentifierString @"com.masakih.previewerSelector"
 static NSString *keyPrefPlugInsDir = AppIdentifierString @"." @"PlugInsDir";
 static NSString *keyPrefPlugInsInfo2 = AppIdentifierString @"." @"PlugInsInfo2";
 
-#pragma mark## NSString Literals ##
-static NSString *builtInPreviewerName = @"BuiltIn";
-static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
-
 @interface PreviewerSelector(PSPrivate)
-- (void)loadPlugIns;
 - (BOOL)openURL:(NSURL *)url withPreviewer:(id)previewer;
 - (BOOL)openURLs:(NSArray *)url withPreviewer:(id)previewer;
 @end
@@ -193,156 +159,18 @@ final:
 {
 	return self;
 }
-- (id)init
-{
-	if(self = [super init]) {
-		loadedPlugInsInfo = [[NSMutableArray array] retain];
-	}
-	
-	return self;
-}
 
-- (void)awakePreviewers
-{
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		id previewer = [item previewer];
-		if([previewer respondsToSelector:@selector(awakeByPreviewerSelector:)]) {
-			[previewer performSelector:@selector(awakeByPreviewerSelector:) withObject:self];
-		}
-	}
-}
-- (void)registPlugIn:(NSBundle *)pluginBundle name:(NSString *)name path:(NSString *)fullpath
-{
-	Class pluginClass;
-	id plugin;
-	PSPreviewerItem *item;
-	
-	if([pluginBundle isLoaded]) return;
-	
-	[pluginBundle load];
-	pluginClass = [pluginBundle principalClass];
-	if(!pluginClass) return;
-	if(![pluginClass conformsToProtocol:@protocol(BSImagePreviewerProtocol)]
-	   && ![pluginClass conformsToProtocol:@protocol(BSLinkPreviewing)]) return;
-	plugin = [[[pluginClass alloc] initWithPreferences:[self preferences]] autorelease];
-	if(!plugin) return;
-	
-	item = [itemsDict objectForKey:[pluginBundle bundleIdentifier]];
-	if(!item) {
-		item = [[[PSPreviewerItem alloc] initWithIdentifier:[pluginBundle bundleIdentifier]] autorelease];
-		[item setTryCheck:YES];
-		[item setDisplayInMenu:YES];
-		
-		[loadedPlugInsInfo addObject:item];
-		[itemsDict setObject:item forKey:[item identifier]];
-	}
-	[item setPreviewer:plugin];
-	[item setPath:fullpath];
-	
-	id v = [pluginBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-	if(v) {
-		[item setVersion:v];
-	} else {
-		[item setVersion:@""];
-	}
-	
-	v = [pluginBundle objectForInfoDictionaryKey:@"BSPreviewerDisplayName"];
-	if(v) {
-		[item setDisplayName:v];
-	} else {
-		[item setDisplayName:name];
-	}
-	
-	// ???
-//	[item addObserver:self
-//		   forKeyPath:@"tryCheck"
-//			  options:NSKeyValueObservingOptionNew
-//			  context:NULL];
-//	[item addObserver:self
-//		   forKeyPath:@"displayInMenu"
-//			  options:NSKeyValueObservingOptionNew
-//			  context:NULL];
-	
-//	[loadedPlugInsInfo addObject:item];
-}
-- (void)loadDefaultPreviewer
-{
-	NSBundle *b = [NSBundle mainBundle];
-	id pluginDirPath = [b builtInPlugInsPath];
-	NSFileManager *dfm = [NSFileManager defaultManager];
-	NSArray *files = [dfm directoryContentsAtPath:pluginDirPath];
-	
-	for(NSString *file in files) {
-		NSString *fullpath = [pluginDirPath stringByAppendingPathComponent:file];
-		NSString *name = [file stringByDeletingPathExtension];
-		NSBundle *pluginBundle;
-		
-		if(![name isEqualToString:noarmalImagePreviewerName]) continue;
-		
-		pluginBundle = [NSBundle bundleWithPath:fullpath];
-		if(!pluginBundle) return;
-		
-		[self registPlugIn:pluginBundle name:builtInPreviewerName path:fullpath];
-	}
-}
-
-- (void)loadPlugIns
-{
-	NSString *path = [self plugInsDirectory];
-	NSFileManager *dfm = [NSFileManager defaultManager];
-	NSArray *files = [dfm directoryContentsAtPath:path];
-	
-//	if([[self loadedPlugInsInfo] count] == 0) {
-		[self loadDefaultPreviewer];
-//	}
-		
-	for(NSString *file in files) {
-		NSString *fullpath = [path stringByAppendingPathComponent:file];
-		NSString *name = [file stringByDeletingPathExtension];
-		NSBundle *pluginBundle;
-		
-		if([name isEqualToString:noarmalImagePreviewerName]) continue;
-		
-		pluginBundle = [NSBundle bundleWithPath:fullpath];
-		if(!pluginBundle) continue;
-		
-		[self registPlugIn:pluginBundle name:name path:fullpath];
-	}
-	
-	[self awakePreviewers];
-}
 
 - (NSArray *)loadedPlugInsInfo
 {
-	return loadedPlugInsInfo;
+	return [items previewerItems];
 }
 
 - (void)savePlugInsInfo
 {
-	NSData *itemsData = [NSKeyedArchiver archivedDataWithRootObject:loadedPlugInsInfo];
+	NSData *itemsData = [NSKeyedArchiver archivedDataWithRootObject:[self loadedPlugInsInfo]];
 	
 	[self setPreference:itemsData forKey:keyPrefPlugInsInfo2];
-	
-//	NSLog(@"Save information.");
-}
-- (void)restorePlugInsInfo
-{
-	[loadedPlugInsInfo autorelease];
-	NSData *itemsData = [self preferenceForKey:keyPrefPlugInsInfo2];
-	if(!itemsData) {
-		loadedPlugInsInfo = [[NSMutableArray alloc] init];
-	} else {
-		loadedPlugInsInfo = [[NSKeyedUnarchiver unarchiveObjectWithData:itemsData] retain];
-		if(!loadedPlugInsInfo) {
-			loadedPlugInsInfo = [[NSMutableArray alloc] init];
-		}
-	}
-	
-	[itemsDict autorelease];
-	itemsDict = [[NSMutableDictionary alloc] init];
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		[itemsDict setObject:item forKey:[item identifier]];
-	}
 }
 
 - (NSMenuItem *)preferenceMenuItem
@@ -460,27 +288,15 @@ final:
 	return resolveAlias(path);
 }
 
-//- (void)observeValueForKeyPath:(NSString *)keyPath
-//					  ofObject:(id)object
-//						change:(NSDictionary *)change
-//					   context:(void *)context
-//{
-//	if([keyPath isEqualToString:@"tryCheck"]) {
-//		[self savePlugInsInfo];
-//	}
-//	if([keyPath isEqualToString:@"displayInMenu"]) {
-//		[self savePlugInsInfo];
-//	}
-//}
-
 #pragma mark-
 // Designated Initializer
 - (id)initWithPreferences:(AppDefaults *)prefs
 {
 	self = [self init];
 	
+	items = [[PSPreviewerItems alloc] init];
+	
 	[self setPreferences:prefs];
-	[self loadPlugIns];
 	
 	return self;
 }
@@ -495,17 +311,14 @@ final:
 	preferences = [aPreferences retain];
 	[temp release];
 	
-	id info = [self preferenceForKey:keyPrefPlugInsInfo2];
-	if(info) {
-		[self restorePlugInsInfo];
-	}
+	[items setPreference:preferences];
 }
 	// Action
 - (BOOL)showImageWithURL:(NSURL *)imageURL
 {
 	BOOL result = NO;
 	
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
+	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
 		id previewer = [item previewer];
 		if(![item isTryCheck]) continue;
 		if([previewer validateLink:imageURL]) {
@@ -541,7 +354,7 @@ final:
 {
 	BOOL result = NO;
 	
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
+	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
 		result = [self openURLs:urls withPreviewer:[item previewer]];
 		if(result) return YES;
 	}
@@ -552,156 +365,5 @@ final:
 - (IBAction)showPreviewerPreferences:(id)sender
 {
 	[self openPSPreference:sender];
-}
-@end
-
-@interface PreviewerSelector (PSPreviewerInterface) <PSPreviewerInterface>
-@end
-
-@implementation PreviewerSelector (PSPreviewerInterface)
-static NSArray *previewerDisplayNames = nil;
-static NSArray *previewerIdentifiers = nil;
-static NSArray *previewers = nil;
-
-- (void)buildArrays
-{
-	NSMutableArray *names = [NSMutableArray array];
-	NSMutableArray *ids = [NSMutableArray array];
-		
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		id name = [item displayName];
-		[names addObject:name];
-		
-		id identifier = [item identifier];
-		[ids addObject:identifier];
-	}
-	
-	previewerDisplayNames = [[NSArray arrayWithArray:names] retain];
-	previewerIdentifiers = [[NSArray arrayWithArray:ids] retain];
-}
-- (NSArray *)previewerDisplayNames
-{
-	if(previewerDisplayNames) return previewerDisplayNames;
-	
-	[self buildArrays];
-	
-	return previewerDisplayNames;
-}
-	
-- (NSArray *)previewerIdentifires
-{
-	if(previewerIdentifiers) return previewerIdentifiers;
-	
-	[self buildArrays];
-	
-	return previewerIdentifiers;
-}
-- (BOOL)openURL:(NSURL *)url withPreviewer:(id)previewer
-{
-	if([previewer conformsToProtocol:@protocol(BSLinkPreviewing)]) {
-		return [previewer previewLink:url];
-	}
-	
-	return [previewer showImageWithURL:url];
-}
-- (BOOL)openURLs:(NSArray *)url withPreviewer:(id)previewer
-{
-	if([previewer respondsToSelector:@selector(previewLinks:)]) {
-		return [previewer previewLinks:url];
-	}
-	if([previewer respondsToSelector:@selector(showImagesWithURLs:)]) {
-		return [previewer showImagesWithURLs:url];
-	}
-	return NO;
-}
-
-- (BOOL)openURL:(NSURL *)url inPreviewerByName:(NSString *)previewerName
-{
-	BOOL result = NO;
-	
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		NSString *displayName = [item displayName];
-		
-		if([displayName isEqualToString:previewerName]) {
-			id previewer = [item previewer];
-			if([previewer validateLink:url]) {
-				result =  [self openURL:url withPreviewer:previewer];;
-			}
-			return result;
-		}
-	}
-	
-	return NO;
-}
-- (BOOL)openURL:(NSURL *)url inPreviewerByIdentifier:(NSString *)target
-{
-	BOOL result = NO;
-	
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		NSString *identifier = [item identifier];
-		
-		if([identifier isEqualToString:target]) {
-			id previewer = [item previewer];
-			if([previewer validateLink:url]) {
-				result =  [self openURL:url withPreviewer:previewer];;
-			}
-			return result;
-		}
-	}
-	
-	return NO;
-}
-
-- (NSArray *)previewerItems
-{
-	return [NSArray arrayWithArray:loadedPlugInsInfo];
-}
-
-// for direct controll previewers.
-- (NSArray *)previewers
-{
-	if(previewers) return previewers;
-	
-	NSMutableArray *pvs = [NSMutableArray array];
-	
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		id pv = [item previewer];
-		[pvs addObject:pv];
-	}
-	
-	previewers = [NSArray arrayWithArray:pvs];
-	
-	return previewers;
-}
-- (id <BSImagePreviewerProtocol>)previewerByName:(NSString *)previewerName
-{
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		NSString *displayName = [item displayName];
-		
-		if([displayName isEqualToString:previewerName]) {
-			return  [item previewer];
-		}
-	}
-	
-	return nil;
-}
-- (id <BSImagePreviewerProtocol>)previewerByIdentifier:(NSString *)previewerIdentifier
-{
-	for(PSPreviewerItem *item in loadedPlugInsInfo) {
-		NSString *identifier = [item identifier];
-		
-		if([identifier isEqualToString:previewerIdentifier]) {
-			return  [item previewer];
-		}
-	}
-	
-	return nil;
-}
-@end
-
-@implementation NSObject (PSPreviewerInterface)
-+ (id <PSPreviewerInterface>)PSPreviewerSelector
-{
-	return [PreviewerSelector sharedInstance];
 }
 @end

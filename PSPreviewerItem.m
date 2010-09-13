@@ -66,9 +66,29 @@ static NSMutableDictionary *previewerInfo = nil;
 	if(previewer == newPreviewer) return;
 	
 	[previewer autorelease];
-	previewer = [newPreviewer retain];
 	
+	if(!newPreviewer) return;
+	
+	previewer = [newPreviewer retain];
 	[previewerInfo setObject:previewer forKey:identifier];
+}
+
+- (BOOL)isEqual:(id)object
+{
+	if(self == object) return YES;
+	if(![object isMemberOfClass:[self class]]) return NO;
+	
+	return [self.identifier isEqualToString:[object identifier]];
+}
+- (NSUInteger)hash
+{
+	return [self.identifier hash];
+}
+
+- (id)description
+{
+	return [NSString stringWithFormat:@"%@ <%p> identifier = %@",
+			NSStringFromClass([self class]), self, self.identifier];
 }
 
 - (id)copyWithZone:(NSZone *)zone

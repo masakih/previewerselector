@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		F458F523123CEE0900A546E4 /* PSPreviewerItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F458F522123CEE0900A546E4 /* PSPreviewerItems.m */; };
 		F4A2FAE50F467CDC00A84E18 /* PSPreviewerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */; };
+		F4AA26BE123D26C30065CF68 /* PSPreviewerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AA26BD123D26C30065CF68 /* PSPreviewerInterface.m */; };
 		F4E0B9030CF72883003E4686 /* PSPPreviewerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4E0B9020CF72883003E4686 /* PSPPreviewerTableView.m */; };
 		F4E0BA900CF7350E003E4686 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4E0BA8F0CF7350E003E4686 /* Localizable.strings */; };
 		F4F160330A0D1D1B00C7526C /* Preference.nib in Resources */ = {isa = PBXBuildFile; fileRef = F4F160320A0D1D1B00C7526C /* Preference.nib */; };
@@ -27,9 +29,12 @@
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		F45032530F669A9500B0B042 /* PSPreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerInterface.h; sourceTree = "<group>"; };
+		F458F521123CEE0900A546E4 /* PSPreviewerItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItems.h; sourceTree = "<group>"; };
+		F458F522123CEE0900A546E4 /* PSPreviewerItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPreviewerItems.m; sourceTree = "<group>"; };
 		F47281760CF48168008E5A5B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = English; path = English.lproj/Makefile; sourceTree = "<group>"; };
 		F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItem.h; sourceTree = "<group>"; };
 		F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPreviewerItem.m; sourceTree = "<group>"; };
+		F4AA26BD123D26C30065CF68 /* PSPreviewerInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPreviewerInterface.m; sourceTree = "<group>"; };
 		F4B9F90F0D9BCB0E00535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = Japanese; path = Japanese.lproj/Makefile; sourceTree = "<group>"; };
 		F4B9F9110D9BCB2000535CDD /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Japanese; path = Japanese.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F4D254E711C7968100232358 /* BSPreviewPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSPreviewPluginInterface.h; sourceTree = "<group>"; };
@@ -94,12 +99,15 @@
 			isa = PBXGroup;
 			children = (
 				F45032530F669A9500B0B042 /* PSPreviewerInterface.h */,
+				F4AA26BD123D26C30065CF68 /* PSPreviewerInterface.m */,
 				F4F160540A0D200800C7526C /* BSImagePreviewerInterface.h */,
 				F4D254E711C7968100232358 /* BSPreviewPluginInterface.h */,
 				F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */,
 				F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */,
 				F4F160350A0D1ED000C7526C /* PSPreference.h */,
 				F4F160340A0D1ED000C7526C /* PSPreference.m */,
+				F458F521123CEE0900A546E4 /* PSPreviewerItems.h */,
+				F458F522123CEE0900A546E4 /* PSPreviewerItems.m */,
 				F4F160430A0D1FC000C7526C /* PreviewerSelector.h */,
 				F4F160440A0D1FC000C7526C /* PreviewerSelector.m */,
 				F4E0B9010CF72883003E4686 /* PSPPreviewerTableView.h */,
@@ -249,6 +257,8 @@
 				F4F160450A0D1FC000C7526C /* PreviewerSelector.m in Sources */,
 				F4E0B9030CF72883003E4686 /* PSPPreviewerTableView.m in Sources */,
 				F4A2FAE50F467CDC00A84E18 /* PSPreviewerItem.m in Sources */,
+				F458F523123CEE0900A546E4 /* PSPreviewerItems.m in Sources */,
+				F4AA26BE123D26C30065CF68 /* PSPreviewerInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
