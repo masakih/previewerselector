@@ -41,6 +41,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 - (void)setPreference:(id)pref
 {
 	[self loadPlugIns];
+	[self awakePreviewers];
 	
 	NSMutableArray *newItems = [NSMutableArray array];
 	NSArray *retoredItems = nil;
@@ -52,12 +53,14 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 		retoredItems = [[NSKeyedUnarchiver unarchiveObjectWithData:itemsData] retain];
 	}
 	
+	// リストアされ且つロード済のプラグインを追加
 	for(PSPreviewerItem *item in retoredItems) {
 		if([previewerItems containsObject:item]) {
 			[newItems addObject:item];
 		}
 	}
 	
+	// リストアされていないがロード済のプラグインを追加
 	for(PSPreviewerItem *item in previewerItems) {
 		if(![newItems containsObject:item]) {
 			[newItems addObject:item];
@@ -66,7 +69,6 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	
 	[previewerItems autorelease];
 	previewerItems = [newItems retain];
-	
 }
 
 - (void)awakePreviewers
@@ -74,7 +76,8 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	for(PSPreviewerItem *item in previewerItems) {
 		id previewer = [item previewer];
 		if([previewer respondsToSelector:@selector(awakeByPreviewerSelector:)]) {
-			[previewer performSelector:@selector(awakeByPreviewerSelector:) withObject:self];
+			[previewer performSelector:@selector(awakeByPreviewerSelector:)
+							withObject:[PreviewerSelector sharedInstance]];
 		}
 	}
 }
@@ -160,8 +163,6 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 		
 		[self registPlugIn:pluginBundle name:name path:fullpath];
 	}
-	
-	[self awakePreviewers];
 }
 
 @end
