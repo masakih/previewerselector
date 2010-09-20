@@ -350,7 +350,7 @@
 								<string>089C166AFE841209C02AAC07</string>
 								<string>08FB77AFFE84173DC02AAC07</string>
 								<string>089C167CFE841241C02AAC07</string>
-								<string>089C167DFE841241C02AAC07</string>
+								<string>F4E0BA8F0CF7350E003E4686</string>
 								<string>089C1671FE841209C02AAC07</string>
 								<string>1058C7AEFEA557BF11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -360,8 +360,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>11</integer>
-									<integer>1</integer>
+									<integer>20</integer>
+									<integer>17</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -398,14 +398,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PSPreviewerItems.m</string>
+								<string>PSPreference.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -413,44 +411,40 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PSPreviewerItems.m</string>
+										<string>PSPreference.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F4F6EB9C123FA5AA0058FE97</string>
+										<string>F49D2F291246F88300FA4A1F</string>
 										<key>history</key>
 										<array>
-											<string>F4D2550111C79FF800232358</string>
 											<string>F4D2553411C7A46800232358</string>
 											<string>F4D2553611C7A46800232358</string>
 											<string>F4D2560A11C7AA2C00232358</string>
 											<string>F4D2560C11C7AA2C00232358</string>
 											<string>F4D2566611C7B31D00232358</string>
 											<string>F46DB903121C1E8F006F8C6D</string>
-											<string>F46DB90A121D6294006F8C6D</string>
-											<string>F458F384123C8F7100A546E4</string>
 											<string>F458F385123C8F7100A546E4</string>
 											<string>F458F3AB123C92AE00A546E4</string>
 											<string>F458F4F3123CD56100A546E4</string>
 											<string>F458F4F5123CD56100A546E4</string>
 											<string>F458F4F7123CD56100A546E4</string>
 											<string>F458F4F9123CD56100A546E4</string>
-											<string>F458F5C1123D162C00A546E4</string>
-											<string>F458F665123D217600A546E4</string>
-											<string>F4AA26B5123D26780065CF68</string>
-											<string>F4AA26B6123D26780065CF68</string>
-											<string>F4AA26D7123D285A0065CF68</string>
-											<string>F4AA26D8123D285A0065CF68</string>
-											<string>F4AA26DD123D285A0065CF68</string>
-											<string>F4F6EB93123FA5AA0058FE97</string>
-											<string>F4F6EB94123FA5AA0058FE97</string>
-											<string>F4F6EB95123FA5AA0058FE97</string>
 											<string>F4F6EB96123FA5AA0058FE97</string>
-											<string>F4F6EB97123FA5AA0058FE97</string>
-											<string>F4F6EB98123FA5AA0058FE97</string>
-											<string>F4F6EB99123FA5AA0058FE97</string>
-											<string>F4F6EB9A123FA5AA0058FE97</string>
-											<string>F4F6EB9B123FA5AA0058FE97</string>
+											<string>F4F6EBA91240EE190058FE97</string>
+											<string>F4F6EBAA1240EE190058FE97</string>
+											<string>F4F6EBAC1240EE190058FE97</string>
+											<string>F4F6EBB01240EE190058FE97</string>
+											<string>F4F6EBB41240EE190058FE97</string>
+											<string>F4F6EBB51240EE190058FE97</string>
+											<string>F4F6EBB61240EE190058FE97</string>
+											<string>F4F6F65C12411DB60058FE97</string>
+											<string>F4F6F65D12411DB60058FE97</string>
+											<string>F4F6F65E12411DB60058FE97</string>
+											<string>F4F6F7511241223C0058FE97</string>
+											<string>F4F6F7541241223C0058FE97</string>
+											<string>F4F6F75C124122C40058FE97</string>
+											<string>F49D2F281246F88300FA4A1F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -508,9 +502,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F4F6EB9D123FA5AA0058FE97</string>
+				<string>F49D2F221246F83200FA4A1F</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F4F6EB9E123FA5AA0058FE97</string>
+				<string>F49D2F231246F83200FA4A1F</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -629,7 +623,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>306161066.72408199</real>
+	<real>306641027.24698901</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -644,15 +638,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F4F6EB9F123FA5AA0058FE97</string>
-		<string>F4F6EBA0123FA5AA0058FE97</string>
-		<string>F4F6EBA1123FA5AA0058FE97</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F4F4DDE80F67D5AD00C75461</string>
-		<string>F4C6F3920F47034D0078E711</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/masaki/Projects/PreviewerSelector/PreviewerSelector.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>192 145 1126 725 0 0 1440 878 </string>
@@ -676,7 +664,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>PSPreviewerItems.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -693,6 +681,8 @@
 							<string>271pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -732,7 +722,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F4F4DDE80F67D5AD00C75461</string>
-				<string>F4F6EB77123E77700058FE97</string>
+				<string>F49D2F171246F82400FA4A1F</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -852,13 +842,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>F4F6EB84123FA4560058FE97</string>
+				<string>F49D2F181246F82400FA4A1F</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>F4F6EB85123FA4560058FE97</string>
-				<string>F4F6EB86123FA4560058FE97</string>
-				<string>F4F6EB87123FA4560058FE97</string>
-				<string>F4F6EB88123FA4560058FE97</string>
-				<string>F4F6EB89123FA4560058FE97</string>
+				<string>F49D2F191246F82400FA4A1F</string>
+				<string>F49D2F1A1246F82400FA4A1F</string>
+				<string>F49D2F1B1246F82400FA4A1F</string>
+				<string>F49D2F1C1246F82400FA4A1F</string>
+				<string>F49D2F1D1246F82400FA4A1F</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -958,7 +948,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

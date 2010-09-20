@@ -174,7 +174,7 @@ enum _PreferenceMenuTags {
 
 - (NSDragOperation)tableView:(NSTableView*)targetTableView
 				validateDrop:(id <NSDraggingInfo>)info
-				 proposedRow:(int)row
+				 proposedRow:(NSInteger)row
 	   proposedDropOperation:(NSTableViewDropOperation)dropOperation
 {
 	NSPasteboard *pboard = [info draggingPasteboard];
@@ -196,7 +196,7 @@ enum _PreferenceMenuTags {
 
 - (BOOL)tableView:(NSTableView*)tableView
 	   acceptDrop:(id <NSDraggingInfo>)info
-			  row:(int)row
+			  row:(NSInteger)row
 	dropOperation:(NSTableViewDropOperation)dropOperation
 {
 	NSPasteboard *pboard = [info draggingPasteboard];

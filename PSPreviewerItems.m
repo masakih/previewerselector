@@ -22,6 +22,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 
 @interface PSPreviewerItems ()
 - (void)loadPlugIns;
+- (void)awakePreviewers;
 @end
 
 @implementation PSPreviewerItems
@@ -50,7 +51,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	if(!itemsData) {
 		return;
 	} else {
-		retoredItems = [[NSKeyedUnarchiver unarchiveObjectWithData:itemsData] retain];
+		retoredItems = [NSKeyedUnarchiver unarchiveObjectWithData:itemsData];
 	}
 	
 	// リストアされ且つロード済のプラグインを追加
