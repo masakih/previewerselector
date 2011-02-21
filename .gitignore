@@ -12,6 +12,7 @@ build/
 
 *.~nib
 *.swp
+*.bak
 *~
 *.[oa]
 
