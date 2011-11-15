@@ -65,6 +65,12 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	for(PSPreviewerItem *item in previewerItems) {
 		if(![newItems containsObject:item]) {
 			[newItems addObject:item];
+		} else {
+			NSInteger index = [newItems indexOfObject:item];
+			PSPreviewerItem *restoredItem = [newItems objectAtIndex:index];
+			if(![restoredItem.version isEqualToString:item.version]) {
+				[newItems replaceObjectAtIndex:index withObject:item];
+			}
 		}
 	}
 	
