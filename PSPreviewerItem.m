@@ -20,6 +20,11 @@ static NSMutableDictionary *previewerInfo = nil;
 
 @implementation PSPreviewerItem
 
+@synthesize identifier;
+@synthesize previewer;
+@synthesize displayName, path, version;
+@synthesize tryCheck, displayInMenu;
+
 + (void)initialize
 {
 	static BOOL isFirst = YES;
@@ -44,72 +49,46 @@ static NSMutableDictionary *previewerInfo = nil;
 	return self;
 }
 
-- (NSString *)identifier
+- (void)dealloc
 {
-	return identifier;
+	self.previewer = nil;
+	self.displayName = nil;
+	self.path = nil;
+	self.version = nil;
+	
+	[identifier release];
+	
+	[super dealloc];
 }
 
-- (id)previewer
-{
-	return previewer;
-}
 - (void)setPreviewer:(id)newPreviewer
 {
 	if(previewer == newPreviewer) return;
 	
 	[previewer autorelease];
-	previewer = [newPreviewer retain];
 	
+	if(!newPreviewer) return;
+	
+	previewer = [newPreviewer retain];
 	[previewerInfo setObject:previewer forKey:identifier];
 }
-- (NSString *)displayName
+
+- (BOOL)isEqual:(id)object
 {
-	return displayName;
-}
-- (void)setDisplayName:(NSString *)newDisplayName
-{
-	if(displayName == newDisplayName) return;
+	if(self == object) return YES;
+	if(![object isMemberOfClass:[self class]]) return NO;
 	
-	[displayName autorelease];
-	displayName = [newDisplayName copy];
+	return [self.identifier isEqualToString:[object identifier]];
 }
-- (NSString *)path
+- (NSUInteger)hash
 {
-	return path;
+	return [self.identifier hash];
 }
-- (void)setPath:(NSString *)newPath
+
+- (id)description
 {
-	if(path == newPath) return;
-	
-	[path autorelease];
-	path = [newPath copy];
-}
-- (NSString *)version
-{
-	return version;
-}
-- (void)setVersion:(NSString *)newVersion
-{
-	if(version == newVersion) return;
-	
-	[version autorelease];
-	version = [newVersion copy];
-}
-- (BOOL)isTryCheck
-{
-	return tryCheck;
-}
-- (void)setTryCheck:(BOOL)flag
-{
-	tryCheck = flag;
-}
-- (BOOL)isDisplayInMenu
-{
-	return displayInMenu;
-}
-- (void)setDisplayInMenu:(BOOL)flag
-{
-	displayInMenu = flag;
+	return [NSString stringWithFormat:@"%@ <%p> identifier = %@",
+			NSStringFromClass([self class]), self, self.identifier];
 }
 
 - (id)copyWithZone:(NSZone *)zone

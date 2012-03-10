@@ -10,9 +10,6 @@ INFO_PLIST=Info.plist
 
 PACKAGE_NAME=PreviewerSelector
 
-URL_PreviewerSelector = svn+ssh://macmini/usr/local/svnrepos/PreviewerSelector
-HEAD = $(URL_PreviewerSelector)/PreviewerSelector
-TAGS_DIR = $(URL_PreviewerSelector)/tags
 
 all:
 	@echo do  nothig.
@@ -23,13 +20,15 @@ tagging:
 	VER=`grep -A1 'CFBundleVersion' Info.plist | tail -1 | tr -d '\t</string>'`;    \
 	echo svn copy $(HEAD) $(TAGS_DIR)/release-$${VER}
 
-Localizable: IconSetComposer.m
-	genstrings -o English.lproj $<
+Localizable:
+	genstrings -o English.lproj $^
 	(cd English.lproj; ${MAKE} $@;)
+	genstrings -o Japanese.lproj $^
+	(cd Japanese.lproj; ${MAKE} $@;)
 
 checkLocalizable:
 	(cd English.lproj; ${MAKE} $@;)
-
+	(cd Japanese.lproj; ${MAKE} $@;)
 release:
 	xcodebuild -configuration $(DEPLOYMENT)
 

@@ -7,6 +7,6 @@
 	<key>Open %@'s Preferences</key>
 	<string>%@の環境設定を開く</string>
 	<key>Preference...</key>
-	<string>環境設定...</string>
+	<string>Previewer Selector 環境設定...</string>
 </dict>
 </plist>
