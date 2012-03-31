@@ -16,3 +16,6 @@ build/
 *~
 *.[oa]
 
+
+project.xcworkspace
+xcuserdata/
