@@ -24,11 +24,8 @@ static NSArray *previewers = nil;
 	NSMutableArray *ids = [NSMutableArray array];
 	
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		id name = [item displayName];
-		[names addObject:name];
-		
-		id identifier = [item identifier];
-		[ids addObject:identifier];
+		[names addObject:item.displayName];
+		[ids addObject:item.identifier];
 	}
 	
 	previewerDisplayNames = [[NSArray arrayWithArray:names] retain];
@@ -75,10 +72,10 @@ static NSArray *previewers = nil;
 	BOOL result = NO;
 	
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		NSString *displayName = [item displayName];
+		NSString *displayName = item.displayName;
 		
 		if([displayName isEqualToString:previewerName]) {
-			id previewer = [item previewer];
+			id previewer = item.previewer;
 			if([previewer validateLink:url]) {
 				result =  [self openURL:url withPreviewer:previewer];;
 			}
@@ -93,10 +90,8 @@ static NSArray *previewers = nil;
 	BOOL result = NO;
 	
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		NSString *identifier = [item identifier];
-		
-		if([identifier isEqualToString:target]) {
-			id previewer = [item previewer];
+		if([item.identifier isEqualToString:target]) {
+			id previewer = item.previewer;
 			if([previewer validateLink:url]) {
 				result =  [self openURL:url withPreviewer:previewer];;
 			}
@@ -120,8 +115,7 @@ static NSArray *previewers = nil;
 	NSMutableArray *pvs = [NSMutableArray array];
 	
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		id pv = [item previewer];
-		[pvs addObject:pv];
+		[pvs addObject:item.previewer];
 	}
 	
 	previewers = [NSArray arrayWithArray:pvs];
@@ -131,10 +125,8 @@ static NSArray *previewers = nil;
 - (id <BSImagePreviewerProtocol>)previewerByName:(NSString *)previewerName
 {
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		NSString *displayName = [item displayName];
-		
-		if([displayName isEqualToString:previewerName]) {
-			return  [item previewer];
+		if([item.displayName isEqualToString:previewerName]) {
+			return item.previewer;
 		}
 	}
 	
@@ -143,10 +135,8 @@ static NSArray *previewers = nil;
 - (id <BSImagePreviewerProtocol>)previewerByIdentifier:(NSString *)previewerIdentifier
 {
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		NSString *identifier = [item identifier];
-		
-		if([identifier isEqualToString:previewerIdentifier]) {
-			return  [item previewer];
+		if([item.identifier isEqualToString:previewerIdentifier]) {
+			return item.previewer;
 		}
 	}
 	

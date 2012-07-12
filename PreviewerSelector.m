@@ -195,18 +195,13 @@ final:
 	[res setSubmenu:submenu];
 	
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		id name;
-		id menuItem;
+		if(!item.isDisplayInMenu) continue;
 		
-		if(![item isDisplayInMenu]) continue;
+		NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:item.displayName
+														   action:@selector(performLinkAction:)
+													keyEquivalent:@""] autorelease];
 		
-		name = [item displayName];
-		
-		menuItem = [[[NSMenuItem alloc] initWithTitle:name
-										   action:@selector(performLinkAction:)
-									keyEquivalent:@""] autorelease];
-		
-		if([[item previewer] validateLink:url]) {
+		if([item.previewer validateLink:url]) {
 			[menuItem setTarget:self];
 			[menuItem setRepresentedObject:
 				[NSDictionary dictionaryWithObjectsAndKeys:item, keyPlugInObject, url, keyActionLink, nil]];
@@ -319,8 +314,9 @@ final:
 	BOOL result = NO;
 	
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		id previewer = [item previewer];
-		if(![item isTryCheck]) continue;
+		if(!item.isTryCheck) continue;
+		
+		id previewer = item.previewer;
 		if([previewer validateLink:imageURL]) {
 			result =  [self openURL:imageURL withPreviewer:previewer];
 		}
@@ -355,7 +351,7 @@ final:
 	BOOL result = NO;
 	
 	for(PSPreviewerItem *item in [self loadedPlugInsInfo]) {
-		result = [self openURLs:urls withPreviewer:[item previewer]];
+		result = [self openURLs:urls withPreviewer:item.previewer];
 		if(result) return YES;
 	}
 	

@@ -94,12 +94,12 @@ static NSMutableDictionary *previewerInfo = nil;
 - (id)copyWithZone:(NSZone *)zone
 {
 	PSPreviewerItem *result = [[[self class] allocWithZone:zone] initWithIdentifier:identifier];
-	[result setPreviewer:previewer];
-	[result setDisplayName:displayName];
-	[result setVersion:version];
-	[result setPath:path];
-	[result setTryCheck:tryCheck];
-	[result setDisplayInMenu:displayInMenu];
+	result.previewer = previewer;
+	result.displayName = displayName;
+	result.version = version;
+	result.path = path;
+	result.tryCheck = tryCheck;
+	result.displayInMenu = displayInMenu;
 	
 	return result;
 }
@@ -116,14 +116,14 @@ static NSMutableDictionary *previewerInfo = nil;
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	[self initWithIdentifier:[aDecoder decodeObjectForKey:PSPIIdentifierKey]];
-	[self setDisplayName:[aDecoder decodeObjectForKey:PSIDisplayNameKey]];
-	[self setPath:[aDecoder decodeObjectForKey:PSIPathKey]];
-	[self setVersion:[aDecoder decodeObjectForKey:PSIVersionKey]];
-	[self setTryCheck:[aDecoder decodeBoolForKey:PSPITryCheckKey]];
-	[self setDisplayInMenu:[aDecoder decodeBoolForKey:PSPIDisplayInMenuKey]];
+	self.displayName = [aDecoder decodeObjectForKey:PSIDisplayNameKey];
+	self.path = [aDecoder decodeObjectForKey:PSIPathKey];
+	self.version = [aDecoder decodeObjectForKey:PSIVersionKey];
+	self.tryCheck = [aDecoder decodeBoolForKey:PSPITryCheckKey];
+	self.displayInMenu = [aDecoder decodeBoolForKey:PSPIDisplayInMenuKey];
 	
 	id p = [previewerInfo objectForKey:identifier];
-	if(p) [self setPreviewer:p];
+	if(p) self.previewer = p;
 	
 	return self;
 }

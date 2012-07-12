@@ -105,24 +105,16 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	if(!plugin) return;
 	
 	item = [[[PSPreviewerItem alloc] initWithIdentifier:[pluginBundle bundleIdentifier]] autorelease];
-	[item setTryCheck:YES];
-	[item setDisplayInMenu:YES];
-	[item setPreviewer:plugin];
-	[item setPath:fullpath];
+	item.tryCheck = YES;
+	item.displayInMenu = YES;
+	item.previewer = plugin;
+	item.path = fullpath;
 	
 	id v = [pluginBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-	if(v) {
-		[item setVersion:v];
-	} else {
-		[item setVersion:@""];
-	}
+	item.version = v ?: @"";
 	
 	v = [pluginBundle objectForInfoDictionaryKey:@"BSPreviewerDisplayName"];
-	if(v) {
-		[item setDisplayName:v];
-	} else {
-		[item setDisplayName:name];
-	}
+	item.displayName = v ?: name;
 	
 	if(![previewerItems containsObject:item]) {
 		[previewerItems addObject:item];
