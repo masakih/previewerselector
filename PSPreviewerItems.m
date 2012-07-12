@@ -134,7 +134,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	NSBundle *b = [NSBundle mainBundle];
 	id pluginDirPath = [b builtInPlugInsPath];
 	NSFileManager *dfm = [NSFileManager defaultManager];
-	NSArray *files = [dfm directoryContentsAtPath:pluginDirPath];
+	NSArray *files = [dfm contentsOfDirectoryAtPath:pluginDirPath error:NULL];
 	
 	for(NSString *file in files) {
 		NSString *fullpath = [pluginDirPath stringByAppendingPathComponent:file];
@@ -154,7 +154,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 {
 	NSString *path = [[PreviewerSelector sharedInstance] plugInsDirectory];
 	NSFileManager *dfm = [NSFileManager defaultManager];
-	NSArray *files = [dfm directoryContentsAtPath:path];
+	NSArray *files = [dfm contentsOfDirectoryAtPath:path error:NULL];
 	
 	[self loadDefaultPreviewer];
 	
