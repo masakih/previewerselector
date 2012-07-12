@@ -61,12 +61,17 @@ static PSPreference *sSharedInstance = nil;
 	
 	[pluginsView registerForDraggedTypes:[NSArray arrayWithObject:PSPItemPastboardType]];
 	
-	[itemsController addObserver:self forKeyPath:@"selection.tryCheck" options:0 context:NULL];
-	[itemsController addObserver:self forKeyPath:@"selection.displayInMenu" options:0 context:NULL];
+	[itemsController addObserver:self forKeyPath:@"selection.tryCheck" options:0 context:itemsController];
+	[itemsController addObserver:self forKeyPath:@"selection.displayInMenu" options:0 context:itemsController];
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	[[PreviewerSelector sharedInstance] savePlugInsInfo];
+	if(context == itemsController) {
+		[[PreviewerSelector sharedInstance] savePlugInsInfo];
+		return;
+	}
+	
+	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (void)setPlugInList:(id)list
@@ -162,12 +167,12 @@ enum _PreferenceMenuTags {
 {
 	if([rowIndexes count] != 1) return NO;
 	
-	unsigned int index = [rowIndexes firstIndex];
+	NSUInteger index = [rowIndexes firstIndex];
 	
 	[pboard declareTypes:[NSArray arrayWithObjects:PSPItemPastboardType, PSPRowIndexType, nil] owner:nil];
 	[pboard setData:[NSKeyedArchiver archivedDataWithRootObject:[plugInList objectAtIndex:index]]
 			forType:PSPItemPastboardType];
-	[pboard setPropertyList:[NSNumber numberWithUnsignedInt:index] forType:PSPRowIndexType];
+	[pboard setPropertyList:[NSNumber numberWithUnsignedInteger:index] forType:PSPRowIndexType];
 	
 	return YES;
 }
@@ -186,7 +191,7 @@ enum _PreferenceMenuTags {
         [targetTableView setDropRow:row dropOperation:NSTableViewDropAbove];
 	}
 	
-	unsigned int originalRow = [[pboard propertyListForType:PSPRowIndexType] unsignedIntValue];
+	NSUInteger originalRow = [[pboard propertyListForType:PSPRowIndexType] unsignedIntegerValue];
 	if(row == originalRow || row == originalRow + 1) {
 		return NSDragOperationNone;
 	}
@@ -206,7 +211,7 @@ enum _PreferenceMenuTags {
 	
 	if(row < 0) row = 0;
 	
-	unsigned int originalRow = [[pboard propertyListForType:PSPRowIndexType] unsignedIntValue];
+	NSUInteger originalRow = [[pboard propertyListForType:PSPRowIndexType] unsignedIntegerValue];
 	
 	NSData *itemData = [pboard dataForType:PSPItemPastboardType];
 	PSPreviewerItem *item = [NSKeyedUnarchiver unarchiveObjectWithData:itemData];
