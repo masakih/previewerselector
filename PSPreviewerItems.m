@@ -97,7 +97,6 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	
 	if([pluginBundle isLoaded]) return;
 	
-	[pluginBundle load];
 	pluginClass = [pluginBundle principalClass];
 	if(!pluginClass) return;
 	if(![pluginClass conformsToProtocol:@protocol(BSImagePreviewerProtocol)]
@@ -106,24 +105,16 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	if(!plugin) return;
 	
 	item = [[[PSPreviewerItem alloc] initWithIdentifier:[pluginBundle bundleIdentifier]] autorelease];
-	[item setTryCheck:YES];
-	[item setDisplayInMenu:YES];
-	[item setPreviewer:plugin];
-	[item setPath:fullpath];
+	item.tryCheck = YES;
+	item.displayInMenu = YES;
+	item.previewer = plugin;
+	item.path = fullpath;
 	
 	id v = [pluginBundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-	if(v) {
-		[item setVersion:v];
-	} else {
-		[item setVersion:@""];
-	}
+	item.version = v ?: @"";
 	
 	v = [pluginBundle objectForInfoDictionaryKey:@"BSPreviewerDisplayName"];
-	if(v) {
-		[item setDisplayName:v];
-	} else {
-		[item setDisplayName:name];
-	}
+	item.displayName = v ?: name;
 	
 	if(![previewerItems containsObject:item]) {
 		[previewerItems addObject:item];
@@ -134,7 +125,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	NSBundle *b = [NSBundle mainBundle];
 	id pluginDirPath = [b builtInPlugInsPath];
 	NSFileManager *dfm = [NSFileManager defaultManager];
-	NSArray *files = [dfm directoryContentsAtPath:pluginDirPath];
+	NSArray *files = [dfm contentsOfDirectoryAtPath:pluginDirPath error:NULL];
 	
 	for(NSString *file in files) {
 		NSString *fullpath = [pluginDirPath stringByAppendingPathComponent:file];
@@ -154,7 +145,7 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 {
 	NSString *path = [[PreviewerSelector sharedInstance] plugInsDirectory];
 	NSFileManager *dfm = [NSFileManager defaultManager];
-	NSArray *files = [dfm directoryContentsAtPath:path];
+	NSArray *files = [dfm contentsOfDirectoryAtPath:path error:NULL];
 	
 	[self loadDefaultPreviewer];
 	
