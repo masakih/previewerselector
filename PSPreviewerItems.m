@@ -97,7 +97,6 @@ static NSString *noarmalImagePreviewerName = @"ImagePreviewer";
 	
 	if([pluginBundle isLoaded]) return;
 	
-	[pluginBundle load];
 	pluginClass = [pluginBundle principalClass];
 	if(!pluginClass) return;
 	if(![pluginClass conformsToProtocol:@protocol(BSImagePreviewerProtocol)]
