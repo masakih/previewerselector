@@ -29,14 +29,9 @@ static NSMutableDictionary *previewerInfo = nil;
 {
 	static BOOL isFirst = YES;
 	if(isFirst) {
-		@synchronized(self) {
-			if(isFirst) {
-				isFirst = NO;
-				
-				previewerInfo = [[NSMutableDictionary alloc] init];
-//				NSLog(@"Initialize.");
-			}
-		}
+		isFirst = NO;
+		
+		previewerInfo = [[NSMutableDictionary alloc] init];
 	}
 }
 

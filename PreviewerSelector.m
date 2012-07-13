@@ -175,10 +175,9 @@ final:
 
 - (NSMenuItem *)preferenceMenuItem
 {
-	id res;
 	NSString *title = PSLocalizedString(@"Preference...", @"Preference Menu Item.");
 	
-	res = [[[NSMenuItem alloc] initWithTitle:title action:Nil keyEquivalent:@""] autorelease];
+	id res = [[[NSMenuItem alloc] initWithTitle:title action:Nil keyEquivalent:@""] autorelease];
 	[res setAction:@selector(openPSPreference:)];
 	[res setTarget:self];
 	
@@ -188,8 +187,7 @@ final:
 - (NSMenuItem *)previewMenuItemForLink:(id)link
 {
 	NSURL *url = [NSURL URLWithString:link];
-	id res;
-	res = [[[NSMenuItem alloc] initWithTitle:@"" action:Nil keyEquivalent:@""] autorelease];
+	id res = [[[NSMenuItem alloc] initWithTitle:@"" action:Nil keyEquivalent:@""] autorelease];
 	
 	id submenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
 	[res setSubmenu:submenu];

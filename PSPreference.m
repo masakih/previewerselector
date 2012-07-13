@@ -4,10 +4,6 @@
 #import "PSPreviewerItem.h"
 
 
-@interface PSPreference(PSPrivate)
-- (id)privateInit;
-@end
-
 @implementation PSPreference
 
 static NSString *const PSPItemPastboardType = @"PSPItemPastboardType";
