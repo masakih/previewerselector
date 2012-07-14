@@ -13,6 +13,18 @@
 #import "PSPreviewerItem.h"
 #import "PSPreviewerItems.h"
 
+
+#pragma mark -
+#pragma mark CMRFileManager Dummy
+@interface NSObject(CMRFileManagerDummy)
++ (id)defaultManager;
+- (id)supportDirectoryWithName:(NSString *)dirName;
+- (NSString *)filepath;
+@end
+#define CMRFileManager NSClassFromString(@"CMRFileManager")
+
+#pragma mark -
+
 #pragma mark## Static Variable ##
 static IMP orignalIMP;
 
@@ -67,56 +79,6 @@ static NSString *keyPrefPlugInsInfo2 = AppIdentifierString @"." @"PlugInsInfo2";
 
 #pragma mark-
 @implementation PreviewerSelector
-NSString *resolveAlias(NSString *path)
-{
-	NSString *newPath = nil;
-	
-	FSRef	ref;
-	char *newPathCString;
-	Boolean isDir,  wasAliased;
-	OSStatus err;
-	
-	err = FSPathMakeRef( (UInt8 *)[path fileSystemRepresentation], &ref, NULL );
-	if( err == dirNFErr ) {
-		NSString *lastPath = [path lastPathComponent];
-		NSString *parent = [path stringByDeletingLastPathComponent];
-		NSString *f;
-		
-		if( [@"/" isEqualTo:parent] ) return nil;
-		
-		parent = resolveAlias( parent );
-		if( !parent ) return nil;
-		
-		f = [parent stringByAppendingPathComponent:lastPath];
-		
-		err = FSPathMakeRef( (UInt8 *)[f fileSystemRepresentation], &ref, NULL );
-	}
-	if( err != noErr ) {
-		return nil;
-	}
-	
-	err = FSResolveAliasFile( &ref, TRUE, &isDir, &wasAliased );
-	if( err != noErr ) {
-		return nil;
-	}
-	
-	newPathCString = (char *)malloc( sizeof(unichar) * 1024 );
-	if( !newPathCString ) {
-		return nil;
-	}
-	
-	err = FSRefMakePath( &ref, (UInt8 *)newPathCString, sizeof(unichar) * 1024 );
-	if( err != noErr ) {
-		goto final;
-	}
-	
-	newPath = [NSString stringWithUTF8String:newPathCString];
-	
-final:
-	free( (char *)newPathCString );
-	
-	return newPath;
-}
 + (void)initialize
 {
 	psSwapMethod();
@@ -255,30 +217,12 @@ final:
 	path = [self preferenceForKey:keyPrefPlugInsDir];
 	
 	if(!path) {
-		NSBundle *mainBundle = [NSBundle mainBundle];
-		NSString *appName = [mainBundle objectForInfoDictionaryKey:@"CFBundleName"];
-		if(!appName) {
-			appName = [[mainBundle infoDictionary] objectForKey:@"CFBundleExecutable"];
-		}
-		
-		OSErr err;
-		FSRef ref;
-		UInt8 pathChars[PATH_MAX];
-		
-		err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, YES, &ref);
-		if( noErr != err) return nil;
-		
-		err = FSRefMakePath(&ref, pathChars, PATH_MAX);
-		if(noErr != err) return nil;
-		
-		path = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(char *)pathChars
-																		   length:strlen((char *)pathChars)];
-		
-		path = [path stringByAppendingPathComponent:appName];
-		path = [path stringByAppendingPathComponent:@"PlugIns"];
+		id fm = [CMRFileManager defaultManager];
+		id pathRef = [fm supportDirectoryWithName:@"PlugIns"];
+		path = [pathRef filepath];
 	}
 	
-	return resolveAlias(path);
+	return path;
 }
 
 #pragma mark-
