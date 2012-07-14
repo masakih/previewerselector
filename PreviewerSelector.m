@@ -163,7 +163,7 @@ final:
 
 - (NSArray *)loadedPlugInsInfo
 {
-	return [items previewerItems];
+	return [_items previewerItems];
 }
 
 - (void)savePlugInsInfo
@@ -287,7 +287,7 @@ final:
 {
 	self = [self init];
 	
-	items = [[PSPreviewerItems alloc] init];
+	_items = [[PSPreviewerItems alloc] init];
 	
 	[self setPreferences:prefs];
 	
@@ -296,15 +296,15 @@ final:
 	// Accessor
 - (AppDefaults *)preferences
 {
-	return preferences;
+	return _preferences;
 }
 - (void)setPreferences:(AppDefaults *)aPreferences
 {
-	id temp = preferences;
-	preferences = [aPreferences retain];
+	id temp = _preferences;
+	_preferences = [aPreferences retain];
 	[temp release];
 	
-	[items setPreference:preferences];
+	[_items setPreference:_preferences];
 }
 	// Action
 - (BOOL)showImageWithURL:(NSURL *)imageURL

@@ -13,7 +13,7 @@
 
 @interface PSPreviewerItems : NSObject
 {
-	NSMutableArray *previewerItems;
+	NSMutableArray *_previewerItems;
 }
 
 - (void)setPreference:(id)pref;

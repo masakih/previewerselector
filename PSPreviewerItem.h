@@ -11,13 +11,13 @@
 
 @interface PSPreviewerItem : NSObject <NSCopying, NSCoding>
 {
-	id previewer;	// コピーしない。 codingしない。
-	NSString *identifier;
-	NSString *displayName;
-	NSString *path;
-	NSString *version;
-	BOOL tryCheck;
-	BOOL displayInMenu;
+	id _previewer;	// コピーしない。 codingしない。
+	NSString *_identifier;
+	NSString *_displayName;
+	NSString *_path;
+	NSString *_version;
+	BOOL _tryCheck;
+	BOOL _displayInMenu;
 }
 
 - (id)initWithIdentifier:(NSString *)identifier;
