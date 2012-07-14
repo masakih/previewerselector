@@ -15,8 +15,8 @@
 
 @interface PreviewerSelector : NSObject <BSImagePreviewerProtocol, BSLinkPreviewing>
 {
-	AppDefaults *preferences;
-	PSPreviewerItems *items;
+	AppDefaults *_preferences;
+	PSPreviewerItems *_items;
 }
 
 + (id)sharedInstance;

@@ -163,7 +163,7 @@ final:
 
 - (NSArray *)loadedPlugInsInfo
 {
-	return [items previewerItems];
+	return [_items previewerItems];
 }
 
 - (void)savePlugInsInfo
@@ -175,10 +175,9 @@ final:
 
 - (NSMenuItem *)preferenceMenuItem
 {
-	id res;
 	NSString *title = PSLocalizedString(@"Preference...", @"Preference Menu Item.");
 	
-	res = [[[NSMenuItem alloc] initWithTitle:title action:Nil keyEquivalent:@""] autorelease];
+	id res = [[[NSMenuItem alloc] initWithTitle:title action:Nil keyEquivalent:@""] autorelease];
 	[res setAction:@selector(openPSPreference:)];
 	[res setTarget:self];
 	
@@ -188,8 +187,7 @@ final:
 - (NSMenuItem *)previewMenuItemForLink:(id)link
 {
 	NSURL *url = [NSURL URLWithString:link];
-	id res;
-	res = [[[NSMenuItem alloc] initWithTitle:@"" action:Nil keyEquivalent:@""] autorelease];
+	id res = [[[NSMenuItem alloc] initWithTitle:@"" action:Nil keyEquivalent:@""] autorelease];
 	
 	id submenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
 	[res setSubmenu:submenu];
@@ -289,7 +287,7 @@ final:
 {
 	self = [self init];
 	
-	items = [[PSPreviewerItems alloc] init];
+	_items = [[PSPreviewerItems alloc] init];
 	
 	[self setPreferences:prefs];
 	
@@ -298,15 +296,15 @@ final:
 	// Accessor
 - (AppDefaults *)preferences
 {
-	return preferences;
+	return _preferences;
 }
 - (void)setPreferences:(AppDefaults *)aPreferences
 {
-	id temp = preferences;
-	preferences = [aPreferences retain];
+	id temp = _preferences;
+	_preferences = [aPreferences retain];
 	[temp release];
 	
-	[items setPreference:preferences];
+	[_items setPreference:_preferences];
 }
 	// Action
 - (BOOL)showImageWithURL:(NSURL *)imageURL

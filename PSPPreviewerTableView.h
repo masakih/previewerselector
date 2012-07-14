@@ -10,8 +10,5 @@
 
 
 @interface PSPPreviewerTableView : NSTableView
-{
-
-}
 
 @end

@@ -20,30 +20,25 @@ static NSMutableDictionary *previewerInfo = nil;
 
 @implementation PSPreviewerItem
 
-@synthesize identifier;
-@synthesize previewer;
-@synthesize displayName, path, version;
-@synthesize tryCheck, displayInMenu;
+@synthesize identifier = _identifier;
+@synthesize previewer = _previewer;
+@synthesize displayName = _displayName, path = _path, version = _version;
+@synthesize tryCheck = _tryCheck, displayInMenu = _displayInMenu;
 
 + (void)initialize
 {
 	static BOOL isFirst = YES;
 	if(isFirst) {
-		@synchronized(self) {
-			if(isFirst) {
-				isFirst = NO;
-				
-				previewerInfo = [[NSMutableDictionary alloc] init];
-//				NSLog(@"Initialize.");
-			}
-		}
+		isFirst = NO;
+		
+		previewerInfo = [[NSMutableDictionary alloc] init];
 	}
 }
 
 - (id)initWithIdentifier:(NSString *)inIdentifier
 {
 	if(self = [super init]) {
-		identifier = [inIdentifier copy];
+		_identifier = [inIdentifier copy];
 	}
 	
 	return self;
@@ -51,26 +46,26 @@ static NSMutableDictionary *previewerInfo = nil;
 
 - (void)dealloc
 {
-	self.previewer = nil;
-	self.displayName = nil;
-	self.path = nil;
-	self.version = nil;
+	[_previewer release];
+	[_displayName release];
+	[_path release];
+	[_version release];
 	
-	[identifier release];
+	[_identifier release];
 	
 	[super dealloc];
 }
 
 - (void)setPreviewer:(id)newPreviewer
 {
-	if(previewer == newPreviewer) return;
+	if(_previewer == newPreviewer) return;
 	
-	[previewer autorelease];
+	[_previewer autorelease];
 	
 	if(!newPreviewer) return;
 	
-	previewer = [newPreviewer retain];
-	[previewerInfo setObject:previewer forKey:identifier];
+	_previewer = [newPreviewer retain];
+	[previewerInfo setObject:_previewer forKey:_identifier];
 }
 
 - (BOOL)isEqual:(id)object
@@ -93,25 +88,25 @@ static NSMutableDictionary *previewerInfo = nil;
 
 - (id)copyWithZone:(NSZone *)zone
 {
-	PSPreviewerItem *result = [[[self class] allocWithZone:zone] initWithIdentifier:identifier];
-	result.previewer = previewer;
-	result.displayName = displayName;
-	result.version = version;
-	result.path = path;
-	result.tryCheck = tryCheck;
-	result.displayInMenu = displayInMenu;
+	PSPreviewerItem *result = [[[self class] allocWithZone:zone] initWithIdentifier:_identifier];
+	result.previewer = _previewer;
+	result.displayName = _displayName;
+	result.version = _version;
+	result.path = _path;
+	result.tryCheck = _tryCheck;
+	result.displayInMenu = _displayInMenu;
 	
 	return result;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	[aCoder encodeObject:identifier forKey:PSPIIdentifierKey];
-	[aCoder encodeObject:displayName forKey:PSIDisplayNameKey];
-	[aCoder encodeObject:path forKey:PSIPathKey];
-	[aCoder encodeObject:version forKey:PSIVersionKey];
-	[aCoder encodeBool:tryCheck forKey:PSPITryCheckKey];
-	[aCoder encodeBool:displayInMenu forKey:PSPIDisplayInMenuKey];
+	[aCoder encodeObject:_identifier forKey:PSPIIdentifierKey];
+	[aCoder encodeObject:_displayName forKey:PSIDisplayNameKey];
+	[aCoder encodeObject:_path forKey:PSIPathKey];
+	[aCoder encodeObject:_version forKey:PSIVersionKey];
+	[aCoder encodeBool:_tryCheck forKey:PSPITryCheckKey];
+	[aCoder encodeBool:_displayInMenu forKey:PSPIDisplayInMenuKey];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -122,8 +117,7 @@ static NSMutableDictionary *previewerInfo = nil;
 	self.tryCheck = [aDecoder decodeBoolForKey:PSPITryCheckKey];
 	self.displayInMenu = [aDecoder decodeBoolForKey:PSPIDisplayInMenuKey];
 	
-	id p = [previewerInfo objectForKey:identifier];
-	if(p) self.previewer = p;
+	self.previewer = [previewerInfo objectForKey:_identifier];
 	
 	return self;
 }
