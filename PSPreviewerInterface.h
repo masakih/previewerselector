@@ -12,7 +12,7 @@
 @class PSPreviewerItem;
 @class PreviewerSelector;
 
-@protocol PSPreviewerInterface
+@protocol PSPreviewerInterface <NSObject>
 
 - (NSArray *)previewerDisplayNames;
 - (NSArray *)previewerIdentifires;
