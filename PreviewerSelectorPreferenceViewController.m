@@ -17,6 +17,9 @@
 static NSString *const PSPItemPastboardType = @"PSPItemPastboardType";
 static NSString *const PSPRowIndexType = @"PSPRowIndexType";
 
+
+@synthesize tableView = _tableView;
+
 - (id)init
 {
     self = [super initWithNibName:@"PreviewerSelectorPreferenceView"
@@ -42,11 +45,6 @@ static NSString *const PSPRowIndexType = @"PSPRowIndexType";
 	}
 	
 	[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-- (NSTableView *)tableView
-{
-	return [(NSScrollView *)self.view documentView];
 }
 
 - (void)setPlugInList:(id)list

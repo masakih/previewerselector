@@ -11,10 +11,10 @@
 @interface PreviewerSelectorPreferenceViewController : NSViewController
 {
 	IBOutlet NSArrayController *itemsController;
-	
+	NSTableView *_tableView;
 	NSMutableArray *plugInList;
 }
-@property (readonly) NSTableView *tableView;
+@property (assign, nonatomic) IBOutlet NSTableView *tableView;
 
 - (id)init;
 
