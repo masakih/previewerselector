@@ -30,4 +30,8 @@
 @property (getter=isTryCheck) BOOL tryCheck;
 @property (getter=isDisplayInMenu) BOOL displayInMenu;
 
+@property (readonly) NSString *copyright;
+@property (readonly) BOOL hasPreviewPanel;
+@property (readonly) BOOL hasPreferencePanel;
+
 @end

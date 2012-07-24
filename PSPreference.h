@@ -2,12 +2,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class PreviewerSelectorPreferenceViewController;
 @interface PSPreference : NSWindowController
 {
-	IBOutlet NSTableView *pluginsView;
-	IBOutlet NSArrayController *itemsController;
-	
-	NSMutableArray *plugInList;
+	PreviewerSelectorPreferenceViewController *viewController;
 }
 
 + (id)sharedPreference;

@@ -10,6 +10,8 @@
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		F458F523123CEE0900A546E4 /* PSPreviewerItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F458F522123CEE0900A546E4 /* PSPreviewerItems.m */; };
+		F46E73B815B2FCB800A4654D /* PreviewerSelectorPreferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F46E73B715B2FCB800A4654D /* PreviewerSelectorPreferenceView.xib */; };
+		F46E73BF15B2FDDD00A4654D /* PreviewerSelectorPreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46E73BE15B2FDDD00A4654D /* PreviewerSelectorPreferenceViewController.m */; };
 		F49DF78C15274D3C00F1E0F0 /* Preference.xib in Resources */ = {isa = PBXBuildFile; fileRef = F49DF78B15274D3C00F1E0F0 /* Preference.xib */; };
 		F4A2FAE50F467CDC00A84E18 /* PSPreviewerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */; };
 		F4AA26BE123D26C30065CF68 /* PSPreviewerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AA26BD123D26C30065CF68 /* PSPreviewerInterface.m */; };
@@ -31,6 +33,9 @@
 		F45032530F669A9500B0B042 /* PSPreviewerInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerInterface.h; sourceTree = "<group>"; };
 		F458F521123CEE0900A546E4 /* PSPreviewerItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItems.h; sourceTree = "<group>"; };
 		F458F522123CEE0900A546E4 /* PSPreviewerItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPreviewerItems.m; sourceTree = "<group>"; };
+		F46E73B715B2FCB800A4654D /* PreviewerSelectorPreferenceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewerSelectorPreferenceView.xib; sourceTree = "<group>"; };
+		F46E73BD15B2FDDD00A4654D /* PreviewerSelectorPreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewerSelectorPreferenceViewController.h; sourceTree = "<group>"; };
+		F46E73BE15B2FDDD00A4654D /* PreviewerSelectorPreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewerSelectorPreferenceViewController.m; sourceTree = "<group>"; };
 		F47281760CF48168008E5A5B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = English; path = English.lproj/Makefile; sourceTree = "<group>"; };
 		F49DF78B15274D3C00F1E0F0 /* Preference.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preference.xib; sourceTree = "<group>"; };
 		F4A2FAE30F467CDC00A84E18 /* PSPreviewerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPreviewerItem.h; sourceTree = "<group>"; };
@@ -88,6 +93,7 @@
 			children = (
 				F47281750CF48168008E5A5B /* Makefile */,
 				F49DF78B15274D3C00F1E0F0 /* Preference.xib */,
+				F46E73B715B2FCB800A4654D /* PreviewerSelectorPreferenceView.xib */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				F4E0BA8F0CF7350E003E4686 /* Localizable.strings */,
@@ -106,6 +112,8 @@
 				F4A2FAE40F467CDC00A84E18 /* PSPreviewerItem.m */,
 				F4F160350A0D1ED000C7526C /* PSPreference.h */,
 				F4F160340A0D1ED000C7526C /* PSPreference.m */,
+				F46E73BD15B2FDDD00A4654D /* PreviewerSelectorPreferenceViewController.h */,
+				F46E73BE15B2FDDD00A4654D /* PreviewerSelectorPreferenceViewController.m */,
 				F458F521123CEE0900A546E4 /* PSPreviewerItems.h */,
 				F458F522123CEE0900A546E4 /* PSPreviewerItems.m */,
 				F4F160430A0D1FC000C7526C /* PreviewerSelector.h */,
@@ -209,6 +217,7 @@
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				F4E0BA900CF7350E003E4686 /* Localizable.strings in Resources */,
 				F49DF78C15274D3C00F1E0F0 /* Preference.xib in Resources */,
+				F46E73B815B2FCB800A4654D /* PreviewerSelectorPreferenceView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +278,7 @@
 				F4A2FAE50F467CDC00A84E18 /* PSPreviewerItem.m in Sources */,
 				F458F523123CEE0900A546E4 /* PSPreviewerItems.m in Sources */,
 				F4AA26BE123D26C30065CF68 /* PSPreviewerInterface.m in Sources */,
+				F46E73BF15B2FDDD00A4654D /* PreviewerSelectorPreferenceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

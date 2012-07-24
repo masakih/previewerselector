@@ -68,6 +68,22 @@ static NSMutableDictionary *previewerInfo = nil;
 	[previewerInfo setObject:_previewer forKey:_identifier];
 }
 
+- (NSString *)copyright
+{
+	NSBundle *bundle = [NSBundle bundleForClass:[self.previewer class]];
+	NSDictionary *info = [bundle localizedInfoDictionary];
+	return [info objectForKey:@"NSHumanReadableCopyright"];
+}
+- (BOOL)hasPreviewPanel
+{
+	return [self.previewer respondsToSelector:@selector(togglePreviewPanel:)];
+}
+- (BOOL)hasPreferencePanel
+{
+	return [self.previewer respondsToSelector:@selector(showPreviewerPreferences:)];
+}
+
+
 - (BOOL)isEqual:(id)object
 {
 	if(self == object) return YES;
